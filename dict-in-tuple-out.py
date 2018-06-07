@@ -17,6 +17,4 @@ my_dict = {
 }
 
 def dict_in_tuple_out(d):
-    print [(k, v) for k, v in d.iteritems()]
-
-dict_in_tuple_out(my_dict)
+    return [(k, v) for k, v in d.iteritems()]

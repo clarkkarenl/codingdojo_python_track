@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Dojo Survey Index</title>
+    <link rel='stylesheet' type='text/css' href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+	<div id="container">
+		<form action="./result" method = "POST">
+			<!-- TODO field validation -->
+			<!-- text field -->
+			<label>Your Name</label>
+			<input type='text' name='name'><br>
+			<!-- drop down -->
+			<label>Dojo Location</label> 
+			<select name='dojo_loc'>
+				<option value="chicago">Chicago</option>
+				<option value="dallas">Dallas</option>
+				<option value="east bay">East Bay</option>
+				<option value="los angeles">Los Angeles</option>
+				<option value="san jose" selected="selected">San Jose</option>
+				<option value="seattle">Seattle</option>
+				<option value="tulsa">Tulsa</option>
+			</select><br>
+			<!-- drop down -->
+			<label>Favorite Language</label>
+			<select name='fav_lang'>
+				<option disabled selected value> -- select an option -- </option>
+				<option value="go">Go</option>
+				<option value="javascript">JavaScript</option>
+				<option value="python" selected="selected">Python</option>
+				<option value="ruby">Ruby</option>
+				<option value="scala">Scala</option>
+			</select><br>
+			<!-- empty text area -->
+			<div id="comment_box">
+				<p class="comment_label">Comment (optional)</p>
+				<textarea name="comment" rows="3" cols="45"></textarea><br>
+			</div>
+			<input type="submit" class="btn" value="Button">
+		</form>
+	</div>
+</body>
+</html>

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Survey Results</title>
+    <link rel='stylesheet' type='text/css' href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+	<div id="container">
+		<h3><u>Submitted Info</u></h3>
+		<div id="data">
+			<p><label>Name:</label> {{ result['name'].title() }}</p>
+			<p><label>Dojo Location:</label> {{ result['dojo_loc'].title() }}</p>
+			<p><label>Favorite Language:</label> {{ result['fav_lang'].title() }}</p>
+			<!-- TODO deal with long strings that are ugly when wrapped -->
+			<p><label>Comments:</label>  {{ result['comment'].capitalize() }}</p>
+		<input type="submit" class="btn" value="Go Back">
+	</div>
+</body>
+</html>

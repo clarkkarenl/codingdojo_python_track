@@ -21,10 +21,6 @@ def index():
 @app.route('/result', methods=['GET', 'POST'])
 def gather_data():
     if request.method == 'POST':
-        # name = request.form.get['name']
-        # dojo_loc = request.form.get['dojo_loc']
-        # fav_lang = request.form.get['fav_lang']
-        # comment = request.form.get['comment']
         result = request.form
         return render_template('result.html', result = result)
     else:

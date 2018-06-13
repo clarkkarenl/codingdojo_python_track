@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>All the Ninjas!</title>
+</head>
+<body>
+    <!-- leonardo = blue -->
+    {% if color  == 'blue' %}
+        <img src="{{ url_for('static', filename='img/leonardo.jpg') }}" alt="Leonardo" />
+    {% endif %} 
+        <!-- michelangelo = orange -->
+        {% if color  == 'orange' %}
+            <img src="{{ url_for('static', filename='img/michelangelo.jpg') }}" alt="Michelangelo" />
+        {% endif %}
+            <!-- raphael = red -->
+            {% if color  == 'red' %}
+                <img src="{{ url_for('static', filename='img/raphael.jpg') }}" alt="Raphael" />
+            {% endif %}
+                <!-- donatello = purple -->
+                {% if color == 'purple' %}
+                    <img src="{{ url_for('static', filename='img/donatello.jpg') }}" alt="Donatello" />
+                {% endif %}
+                <!-- not april -->
+                    {% if color not in poss_colors %}
+                        <img src="{{ url_for('static', filename='img/notapril.jpg') }}" alt="Not April" />
+                    {% endif %}
+    </body>
+</html>
+

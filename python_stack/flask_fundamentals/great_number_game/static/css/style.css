@@ -1,0 +1,35 @@
+* {
+    outline: 1px dashed red;
+    margin: 0;
+}
+div#container {
+    width: 600px;
+    margin-left: 250px;
+    margin-top: 50px;
+    text-align: center;
+}
+h1 {
+    margin: 20px 0px;
+}
+h3 {
+    margin: 10px 0px;
+}
+form {
+    display: inline-block;
+}
+.guess {
+    margin: 10px 0px;
+    width: 80px;
+    height: 20px;
+}
+.submit {
+    background-color: lightgray;
+}
+.nomatch {
+    width: 100px;
+    height: 100px;
+    background-color: red;
+    color: white;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 28px;
+}

@@ -16,7 +16,7 @@ app.secret_key = 'ThisIsSecret'
 
 # load main page and draw a number if one doesn't exist
 @app.route('/')
-def main():
+def index():
     session['draw'] = random.randrange(0, 101)
     session['counter'] = 1
     return render_template('index.html')

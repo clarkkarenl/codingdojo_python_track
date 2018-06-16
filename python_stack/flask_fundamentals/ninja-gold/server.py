@@ -29,17 +29,17 @@ def process_money():
             new_gold = random.randrange(10, 21)
             session['balance'] = int(session['balance']) + new_gold
             timestamp = datetime.datetime.now()
-            session['activities'] += "Earned " + str(new_gold) + " gold from the farm! (" + timestamp.strftime("%Y/%m/%d %I:%M %p") + ")<br/>"
+            session['activities'] = "Earned " + str(new_gold) + " gold from the farm! (" + timestamp.strftime("%Y/%m/%d %I:%M %p") + ")<br/>" + session['activities']
         elif target == 'cave':
             new_gold = random.randrange(5, 11)
             session['balance'] = int(session['balance']) + new_gold
             timestamp = datetime.datetime.now()
-            session['activities'] += "Earned " + str(new_gold) + " gold from the cave! (" + timestamp.strftime("%Y/%m/%d %I:%M %p") + ")<br/>"
+            session['activities'] = "Earned " + str(new_gold) + " gold from the cave! (" + timestamp.strftime("%Y/%m/%d %I:%M %p") + ")<br/>" + session['activities']
         elif target == 'house':
             new_gold = random.randrange(2, 6)
             session['balance'] = int(session['balance']) + new_gold
             timestamp = datetime.datetime.now()
-            session['activities'] += "Earned " + str(new_gold) + " gold from the house! (" + timestamp.strftime("%Y/%m/%d %I:%M %p") + ")<br/>"
+            session['activities'] = "Earned " + str(new_gold) + " gold from the house! (" + timestamp.strftime("%Y/%m/%d %I:%M %p") + ")<br/>" + session['activities']
         elif target == 'casino':
             new_gold = random.randrange(0, 51)
             timestamp = datetime.datetime.now()
@@ -50,17 +50,17 @@ def process_money():
                 # lost gold
                 if outcome == 1:
                     session['balance'] = int(session['balance']) - new_gold
-                    session['activities'] += "Entered a casino and lost " + str(new_gold) + " gold...Ouch. (" + timestamp.strftime("%Y/%m/%d %I:%M %p") + ")<br/>"
+                    session['activities'] = "Entered a casino and lost " + str(new_gold) + " gold...Ouch. (" + timestamp.strftime("%Y/%m/%d %I:%M %p") + ")<br/>" + session['activities']
                     if session['balance'] <= 0:
                         session['balance'] = 50
-                        session['activities'] += "You went bust! Thankfully, your rich uncle paid the debt and gave you 50 gold to keep going. (" + timestamp.strftime("%Y/%m/%d %I:%M %p") + ")<br/>"
+                        session['activities'] = "You went bust! Thankfully, your rich uncle paid the debt and gave you 50 gold to keep going. (" + timestamp.strftime("%Y/%m/%d %I:%M %p") + ")<br/>" + session['activities']
                 # won gold
                 else:
                     session['balance'] = int(session['balance']) + new_gold
-                    session['activities'] += "Entered a casino and won " + str(new_gold) + " gold! (" + timestamp.strftime("%Y/%m/%d %I:%M %p") + ")<br/>"
+                    session['activities'] = "Entered a casino and won " + str(new_gold) + " gold! (" + timestamp.strftime("%Y/%m/%d %I:%M %p") + ")<br/>" + session['activities']
             # else new_gold was 0
             else:
-                session['activities'] += "Entered a casino but did not win or lose gold. (" + timestamp.strftime("%Y/%m/%d %I:%M %p") + ")<br/>"
+                session['activities'] = "Entered a casino but did not win or lose gold. (" + timestamp.strftime("%Y/%m/%d %I:%M %p") + ")<br/>" + session['activities']
         return render_template('index.html')
     
 app.run(debug=True)

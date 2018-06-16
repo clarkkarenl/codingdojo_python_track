@@ -3,13 +3,14 @@
 # 2018-06-14
 #
 # Assignment: Great Number Game
-# Create a site that when a user loads it creates a random number between 
-# 1-100 and stores the number in session. Allow the user to guess at the 
-# number and tell them when they are too high or too low. If they guess 
+# Create a site that when a user loads it creates a random number between
+# 1-100 and stores the number in session. Allow the user to guess at the
+# number and tell them when they are too high or too low. If they guess
 # the correct number tell them and offer to play again.
 
-from flask import Flask, render_template, redirect, request, session
 import random
+from flask import Flask, render_template, redirect, request, session
+
 app = Flask(__name__)
 app.secret_key = 'ThisIsSecret'
 
@@ -21,6 +22,8 @@ def main():
     return render_template('index.html')
 
 # client sends its guess using the input field
+# TODO This doesn't actually work, but I need to move on
+# will come back and finish this when I know more about routing!
 @app.route('/guess', methods=['GET', 'POST'])
 def guess_number():
     curr_guess = request.form.get('guess')

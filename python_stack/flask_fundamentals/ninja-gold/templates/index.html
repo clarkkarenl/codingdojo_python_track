@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <!-- <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}"> -->
+</head>
+<body>
+    <p> {{ name_val }} </p>
+    <div container>
+        <div class='balance'>
+            <p>Your gold:  {{ session['balance'] }}</p>
+        </div>
+        <div class="locations">
+            <div class="building">
+                <h2>Farm</h2>
+                <p>(earns 10 - 20 gold)</p>
+                <form action="/process" method="post">
+                    <input type="hidden" name="building" value="farm">
+                    <input type="submit" value="Find Gold!">
+                </form>
+            </div> <!-- end farm building -->
+            <div class="building">
+                <h2>Cave</h2>
+                <p>(earns 5 - 10 gold)</p>
+                <form action="/process_money" method="post">
+                    <input type="hidden" name="building" value="cave">
+                    <input type="submit" value="Find Gold!">
+                </form>
+            </div>
+            <div class="building">
+                <h2>House</h2>
+                <p>(earns 2 - 5 gold)</p>
+                <form action="/process_money" method="post">
+                    <input type="hidden" name="building" value="house">
+                    <input type="submit" value="Find Gold!">
+                </form>
+            </div>
+            <div class="building">
+                <h2>Casino</h2>
+                <p>(earns/takes 0 - 50 gold)</p>
+                <form action="/process_money" method="post">
+                    <input type="hidden" name="building" value="casino">
+                    <input type="submit" value="Find Gold!">
+                </form>
+            </div>
+        </div> <!-- end locations -->
+        <div class="activities">
+            <h4>Activities</h4>
+            <p>{{ session['activities'] }}</p>
+        </div>
+    </div> <!-- end container -->
+</body>
+</html>

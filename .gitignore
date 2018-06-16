@@ -4336,3 +4336,11 @@ python_stack/myEnvironments/flaskEnv/tcl/tk8.5/ttk/vistaTheme.tcl
 python_stack/myEnvironments/flaskEnv/tcl/tk8.5/ttk/winTheme.tcl
 python_stack/myEnvironments/flaskEnv/tcl/tk8.5/ttk/xpTheme.tcl
 python_stack/myEnvironments/flaskEnv/pip-selfcheck.json
+python_stack/flask_fundamentals/landing_page-k_clark.zip
+python_stack/flask_fundamentals/counter-k_clark.zip
+python_stack/flask_fundamentals/disappearing_ninja-k_clark.zip
+python_stack/flask_fundamentals/dojo_survey-k_clark.zip
+python_stack/flask_fundamentals/great_number_game-k_clark.zip
+.vscode/settings.json
+requests/Pipfile.lock
+requests/Pipfile

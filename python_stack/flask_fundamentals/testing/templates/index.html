@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div container>
+        <div class='balance'>
+            <p>Your balance:  {{ session['balance'] }}</p>
+        </div>
+        <div class="shops">
+            <div class="clothing">
+                <h2>Clothing Store</h2>
+                <p>(earns 10 - 20 dollars)</p>
+                <form action="/process" method="post">
+                    <input type="hidden" name="shop" value="clothing">
+                    <input type="submit" value="Make Money!">
+                </form>
+            </div>
+            <div class="shoes">
+                <h2>Shoe Store</h2>
+                <p>(earns 100 - 140 dollars)</p>
+                <form action="/process" method="post">
+                    <input type="hidden" name="shop" value="shoes">
+                    <input type="submit" value="Make Money!">
+                </form>
+            </div> 
+        </div> 
+        <div class="register">
+            <h4>Receipt Tape</h4>
+            <p>{{ session['register']|safe }} </p>
+        </div>
+    </div>
+</body>
+</html>

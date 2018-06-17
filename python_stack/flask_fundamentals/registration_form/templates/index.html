@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Registration Form</title>
+</head>
+<body>
+	<div id="container">
+		<!-- Flashed messages emitted here -->
+		{% with messages = get_flashed_messages() %}
+			{% if messages %}
+			<p>Error(s) detected:</p>
+				{% for message in messages %}
+					<p>{{ message }}</p>
+				{% endfor %}
+			{% endif %}
+		{% endwith %}
+        <form action="/register" method="POST">
+            <!-- email, first_name, last_name, password, confirm_password -->
+            Email: <input type="text" name="email"><br>
+            First Name: <input type="text" name="first_name"><br>
+			Last Name: <input type="text" name="last_name"><br>
+			Birthdate: <input type="date" name="birthdate"><br>
+            <!-- PASSWORD FIELDS ARE FOR DEMO PURPOSES ONLY: -->
+            <!-- They are not meant for real passwords! -->
+            Password: <input type="text" name="password"><br>
+            Confirm Password: <input type="text" name="confirm_password"><br>
+			<input type="submit" name="submit" value="Submit">
+		</form>
+	</div> <!-- end container -->
+</body>
+</html>

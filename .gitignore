@@ -4347,3 +4347,6 @@ requests/Pipfile
 python_stack/flask_fundamentals/registration_form-k_clark.zip
 python_stack/flask_fundamentals/dojo_survey_validated-k_clark.zip
 python_stack/flask_fundamentals/ninja_gold-k_clark.zip
+python_stack/flask_MySQL/sakila/sakila_queries-k_clark.sql
+python_stack/flask_MySQL/friendships/friendships_query-k_clark.sql
+python_stack/flask_MySQL/mysql_workbench/queries-k_clark.sql

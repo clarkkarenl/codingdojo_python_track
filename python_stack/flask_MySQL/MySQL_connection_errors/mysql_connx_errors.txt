@@ -1,0 +1,34 @@
+# Assignment: MySQL Connection Errors
+# Karen Clark
+# 2018-06-26
+
+#1 - incorrect password
+Issue:
+Input the wrong password in the config, when accessing index.html received:
+- OperationalError: (_mysql_exceptions.OperationalError) (1045, "Access denied for user 'root'@'localhost' (using password: YES)") 
+Fix:
+Update config['password'] with the correct value
+
+#2 - incorrect port
+Issue:
+Input the standard port into the config. However, my instance is running on a different port
+- OperationalError: (_mysql_exceptions.OperationalError) (2003, "Can't connect to MySQL server on '127.0.0.1' (10061)")
+Fix:
+Update config['port'] with the correct value
+
+#3 - hardcoded database
+Issue:
+I copied the mysqlconnection.py file from another project in which the config['db'] name was hardcoded
+- OperationalError: (_mysql_exceptions.OperationalError) (1049, "Unknown database 'otherdb'")
+Fix:
+Restore the config['db'] value to "db" so that the database can be passed in by server.py.
+
+#4 - comment out the database line in the config file
+Issue:
+I commented out the database line in the config file to see what would happen.
+- This site can’t be reached
+localhost refused to connect.
+
+ERR_CONNECTION_REFUSED
+Fix:
+This was a fun one, because Flask couldn't even serve index.html with the database line missing from the config. Restoring the line solved the problem.

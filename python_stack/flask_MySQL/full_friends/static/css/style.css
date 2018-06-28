@@ -1,0 +1,60 @@
+* { 
+    /* outline: 1px dashed red; */
+    margin: 0px;
+}
+body {
+    width: 380px;
+    margin-left: 50px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+p {
+    color: red;
+    text-align: center;
+}
+h2 {
+    text-align: center;
+    padding: 2px 0px;
+}
+h4 {
+    padding: 1px 0px;
+}
+span {
+    padding: 0px 20px 0px 0px;
+    color: purple;
+    display: inline-block;
+    float: left;
+    clear: left;
+    width: 140px;
+    text-align: right;
+}
+.friends {
+    margin: 10px 0px;
+}
+.rule {
+    background-color: black;
+    width: 110%;
+    height: 1px;
+}
+.form_fields {
+    width: 500px;
+    display: inline-block;
+    float: left;
+    margin: 5px 0px;
+}
+input {
+    width: 170px;
+    height: 10px;
+    margin: 1px 0px;
+}
+.btn {
+    display: inline-block;
+	background: lightgreen;
+	border-radius: 4px;
+	color: black;
+	font-size: 12px;
+    width: 15%;
+    height: 25px;
+    padding: 3px 3px;
+    margin-top: 10px;
+	margin-left: 255px;	
+}

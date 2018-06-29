@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+    <title>Success!</title>
+</head>
+<body>
+    <div class="success">
+        <p>The email address you entered ({{ email }}) is a VALID email address! Thank you!</p>
+    </div>
+    <div class="email_list">
+        <h3>Email Addresses Entered</h3>
+        {% for x in all_emails %}
+            <li>{{ x["email"] }} {{ x["created_at"] }}</li>
+        {% endfor %}       
+    </div>
+</body>
+</html>

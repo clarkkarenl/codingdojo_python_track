@@ -1,0 +1,41 @@
+* {
+    margin: 0px;
+}
+body {
+    width: 750px;
+}
+.email_list > li {
+    list-style-type: none;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 9pt;
+    padding: 1px 1px;
+}
+.flash {
+    margin-top: 20px;
+    margin-left: 120px;
+    text-align: center;
+    width: 200px;
+    background-color: red;
+    color: white;
+}
+.success {
+    margin-top: 20px;
+    margin-left: 120px;
+    text-align: center;
+    width: 325px;
+    height: 35px;
+    background-color: green;
+    color: black;
+    padding: 3px 3px;
+}
+form, .email_list {
+    display: inline-block;
+    width: 300px;
+    margin-left: 130px;
+    margin-top: 15px;
+}
+.btn {
+    display: inline-block;
+    margin-top: 10px;
+    margin-left: 200px;
+}

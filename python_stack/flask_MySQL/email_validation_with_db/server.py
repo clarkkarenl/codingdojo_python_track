@@ -15,7 +15,12 @@ def index():
 def create():
     email = request.form["email"]
 
-    if len(request.form['email']) < 1 or not EMAIL_REGEX.match(request.form['email']):
+    check_query = "SELECT id FROM emails where email = \'" + str(email) + "\';"
+    check_result = mysql.query_db(check_query)
+    if len(check_result) > 0:
+        flash("Email is not valid!")
+        return redirect('/')
+    elif len(request.form['email']) < 1 or not EMAIL_REGEX.match(request.form['email']):
         flash("Email is not valid!")
         return redirect('/')
     else:

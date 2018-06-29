@@ -8,7 +8,7 @@ class MySQLConnection(object):
                 'host': 'localhost',
                 'database': 'email_validation', # we got db as an argument
                 'user': 'root',
-                'password': , # TODO: REPLACE ME WITH PW
+                'password': '', # TODO: REPLACE ME WITH PW
                 'port': '3307' # change the port to match the port your SQL server is running on
         }
         # this will use the above values to generate the path to connect to your sql database

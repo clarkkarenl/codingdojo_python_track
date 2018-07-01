@@ -5,7 +5,7 @@ import md5
 EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$')
 
 app = Flask(__name__)
-mysql = MySQLConnector(app,'email_validation')
+mysql = MySQLConnector(app,'login_reg')
 app.secret_key = 'ThisIsASecret'
 # Yes, this is dumb but we are meant to: 
 # "Use md5 to hash passwords before inserting them into the database"

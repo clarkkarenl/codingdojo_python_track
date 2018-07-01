@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+    <title>Welcome Page</title>
+</head>
+<body>
+    <div class="top">
+        <h3>Welcome to the site</h3>
+        <p>If you have an account, please log in</p>
+        <p>Otherwise, register a new account</p>
+        <div class="flash">
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    {% for message in messages %}
+                        <p>{{ message }}</p>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+        </div>
+    </div> <!-- End Top -->
+    <div class="login">
+        <h4>Login</h4>
+        <form action='/login' method='post'>
+            Email address:  <input type="text" name="login_email">
+            Password:  <input type="text" name="login_pw">
+            <input type="submit" class="btn" name="login" value="Log Me In">
+        </form>
+    </div> <!-- end Login -->
+    <div class="register">
+        <h4>Register</h4>
+        <form action='/register' method='post'>
+            First name: <input type="text" name="first_name">
+            Last name: <input type="text" name="last_name">
+            Email address:  <input type="text" name="email">
+            Password:  <input type="text" name="password">
+            Confirm password: <input type="text" name="confirm_pw">
+            <input type="submit" class="btn" name="register" value="Register Me">
+        </form>
+    </div> <!-- End Registration -->
+</body>
+</html>

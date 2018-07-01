@@ -5217,3 +5217,9 @@ python_stack/myEnvironments/flaskEnv/Lib/site-packages/sqlalchemy/util/queue.py
 python_stack/myEnvironments/flaskEnv/Lib/site-packages/sqlalchemy/util/queue.pyc
 python_stack/myEnvironments/flaskEnv/Lib/site-packages/sqlalchemy/util/topological.py
 python_stack/flask_MySQL/class_exercises/flask_mysql_6pm/mysqlconnection.pyc
+python_stack/flask_MySQL/login_reg/mysqlconnection.pyc
+python_stack/flask_MySQL/MySQL_connection_errors/mysql_connx_errors-k_clark.txt
+python_stack/flask_MySQL/class_exercises/friends_practice/mysqlconnection.pyc
+python_stack/flask_MySQL/email_validation_with_db/mysqlconnection.pyc
+python_stack/flask_MySQL/full_friends/mysqlconnection.pyc
+python_stack/flask_MySQL/login_reg/mysqlconnection.py

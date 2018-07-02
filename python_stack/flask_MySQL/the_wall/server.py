@@ -34,13 +34,17 @@ def get_msgs():
 def post_msg():
     if session["id"]:
         new_msg = request.form['msg']
-        new_msg_query = "INSERT INTO `messages`(`user_id`, `message`, `created_at`, `updated_at`) VALUES (:field_one, :field_two, now(), now());"
-        new_msg_data = {
-            'field_one' : session['id'],
-            'field_two' : new_msg
-        }
-        msg_added = mysql.query_db(new_msg_query, new_msg_data)
-        return redirect('/get_msgs')
+        # Don't do anything if the message is empty
+        if len(new_msg) == 0:
+            return redirect('/get_msgs')
+        else:
+            new_msg_query = "INSERT INTO `messages`(`user_id`, `message`, `created_at`, `updated_at`) VALUES (:field_one, :field_two, now(), now());"
+            new_msg_data = {
+                'field_one' : session['id'],
+                'field_two' : new_msg
+            }
+            msg_added = mysql.query_db(new_msg_query, new_msg_data)
+            return redirect('/get_msgs')
     else:
         flash("You are not logged in")
         return redirect('/')

@@ -9,25 +9,38 @@
     <title>Log In Success!</title>
 </head>
 <body>
-    <div class="header">
-        <p><span>CodingDojo Wall</span>  Welcome, {{ session["name"] }} <a href="/logout_page">Log out</a>  </p>
-    </div> <!-- End header -->
-    <div class="post_msg">
-        <form action='/post_msg' method='post'>
-            <input type="textarea" class="msg" name="msg" value="Post a message">
-            <input type="submit" class="btn" name="post_message" value="Post a message">
-        </form>
-    </div> <!-- End post_msg -->
-    <div class="messages">
-        {% if msg_list %}
-            {% for msg in msg_list %}
-            <ul>{{ msg['user_name'] }} - {{ msg['created_at'] }}
-                <li>{{ msg['message'] }}</li>
-            </ul>
-            {% endfor %}
-        {% else %}
-            <p>No messages yet!</p>
-        {% endif %}
-    </div> <!-- End messages -->
+    <div class="wall_container">
+        <div class="wall_header">
+            <p><span>CodingDojo Wall</span>  Welcome, {{ session["name"] }} <a href="/logout_page">Log out</a>  </p>
+            <hr>
+        </div> <!-- End header -->
+        <div class="flash">
+                {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                        {% for message in messages %}
+                            <p>{{ message }}</p>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+        </div> <!-- End flash -->
+        <div class="wall_post_msg">
+            <h5>Post a message</h5>
+            <form action='/post_msg' method='post'>
+                <textarea class="wall_msg" name="msg" placeholder="Enter your message here" cols="40" wrap="hard"></textarea>
+                <input type="submit" class="wall_msg_btn" name="post_message" value="Post a message">
+            </form>
+        </div> <!-- End post_msg -->
+        <div class="wall_messages">
+            {% if msg_list %}
+                {% for msg in msg_list %}
+                <ul><span>{{ msg['user_name'] }} - {{ msg['created_at'] }}</span>
+                    <li>{{ msg['message'] }}</li>
+                </ul>
+                {% endfor %}
+            {% else %}
+                <p>No messages yet!</p>
+            {% endif %}
+        </div> <!-- End messages -->
+    </div> <!-- End Wall Container -->
 </body>
 </html>

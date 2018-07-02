@@ -1,38 +1,81 @@
 * {
     margin: 0px;
 }
-body {
-    width: 650px;
-    font-family: 'Courier New', Courier, monospace;
+body { /* All body base styling */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
-.top {
+.login_reg_container {
+    width: 430px;
+}
+.login_reg_welcome { /* Welcome page header */
     display: inline-block;
-    width: 600px;
+    text-align: center;
+    width: 420px;
 }
-.header {
+.wall_container {
+    width: 500px;
+}
+.wall_header { /* The Wall header section */
     display: inline-block;
+    width: 490px;
+    margin: 2px 2px;
 }
-span {
+.wall_header span {  /* Logged in The Wall page header */
     font-size: 10pt;
-    padding: 0px 255px 0px 0px;
+    padding: 0px 255px 6px 0px;
 }
-ul, li {
+.wall_post_msg {
+    width: 650px;
+}
+.wall_post_msg h5 { /* post message heading */
+    text-align: left;
+    color: darkslategrey;
+    margin-left: 8px;
+}
+.wall_msg_btn { /* post message submit button */
+    height: 20px;
+    margin-top: 5px;
+    margin-left: 290px;
+    font-size: 9pt;
+    background-color: cornflowerblue;
+    color: white;
+}
+.wall_msg { /* post message text area */
+    text-align: top;
+    width: 400px;
+    height: 80px;
+    font-size: 8pt;
+    border: 2px solid #cccccc;
+	background-position: bottom right;
+    background-repeat: no-repeat;
+}
+.wall_messages { /* iterates through each message in db */
+    width: 600px;
+    font-size: 8pt;
+}
+.wall_messages ul { /* messages parent list styling */
     list-style-type: none;
+    overflow: auto;
 }
-li {
-    margin-left: 15px;
+.wall_messages ul span { /* messages parent list styling */
+    font-weight: 600;
 }
-p {
+.wall_messages li { /* messages individual item styling */
+    width: 350px;
+    margin: 2px 0px 3px 15px;
+    white-space: pre-wrap;
+}
+p { /* All paragraph base styling */
     text-align: center;
     font-size: 8pt;
     font-style: italic;
 }
-h3 {
+h3 { /* Login/Reg page instructions */
     margin-top: 10px;
     text-align: center;
     color: black;
 }
-h4 {
+h4 { /* Login/Reg page page header */
     text-align: center;
     margin-top: 5px;
     text-decoration: underline;
@@ -44,16 +87,16 @@ h4 {
     margin-left: 20px;
     width: 180px;
 }
-.login {
+.login { /* Login 'widget' styling  */
     margin-left: 20px;
     border: 1px solid darkblue;
     background-color: lightblue; 
 }
-.register {
+.register { /* Register 'widget' styling  */
     border: 1px solid darkgoldenrod;
     background-color: lightgoldenrodyellow;
 }
-.flash {
+.flash { /* All flash messages base styling */
     margin-top: 20px;
     margin-left: 10px;
     height: 40%;
@@ -62,26 +105,16 @@ h4 {
     background-color: red;
     color: white;
 }
-.success {
-    margin-top: 20px;
-    margin-left: 120px;
-    text-align: center;
-    width: 325px;
-    height: 35px;
-    background-color: green;
-    color: white;
-    padding: 3px 3px;
-}
-form {
+form { /* All forms base styling */
     display: inline-block;
     width: 170px;
     margin-top: 5px;
     padding: 7px;
     font-size: 8pt;
 }
-.btn {
+.login_reg_btn { 
     display: inline-block;
     margin-top: 10px;
     margin-left: 80px;
-    font-size: 9pt;
+    font-size: 8pt;
 }

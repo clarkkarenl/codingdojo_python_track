@@ -10,8 +10,7 @@
 </head>
 <body>
     <div class="header">
-        <h3>CodingDojo Wall</h3>
-        <p>Welcome, {{ session["name"] }} <a href="/logout_page">Log out</a>  </p>
+        <p><span>CodingDojo Wall</span>  Welcome, {{ session["name"] }} <a href="/logout_page">Log out</a>  </p>
     </div> <!-- End header -->
     <div class="post_msg">
         <form action='/post_msg' method='post'>

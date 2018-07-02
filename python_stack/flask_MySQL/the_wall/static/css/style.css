@@ -2,12 +2,25 @@
     margin: 0px;
 }
 body {
-    width: 440px;
+    width: 650px;
     font-family: 'Courier New', Courier, monospace;
 }
 .top {
     display: inline-block;
-    width: 430px;
+    width: 600px;
+}
+.header {
+    display: inline-block;
+}
+span {
+    font-size: 10pt;
+    padding: 0px 255px 0px 0px;
+}
+ul, li {
+    list-style-type: none;
+}
+li {
+    margin-left: 15px;
 }
 p {
     text-align: center;

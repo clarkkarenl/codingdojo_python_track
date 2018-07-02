@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='img/favicon.ico') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+    <title>Log In Success!</title>
+</head>
+<body>
+    <div class="header">
+        <h3>CodingDojo Wall</h3>
+        <p>Welcome, {{ session["name"] }} <a href="/logout_page">Log out</a>  </p>
+    </div> <!-- End header -->
+    <div class="post_msg">
+        <form action='/post_msg' method='post'>
+            <input type="textarea" class="msg" name="msg" value="Post a message">
+            <input type="submit" class="btn" name="post_message" value="Post a message">
+        </form>
+    </div> <!-- End post_msg -->
+    <div class="messages">
+        {% if msg_list %}
+            {% for msg in msg_list %}
+            <ul>{{ msg['user_name'] }} - {{ msg['created_at'] }}
+                <li>{{ msg['message'] }}</li>
+            </ul>
+            {% endfor %}
+        {% else %}
+            <p>No messages yet!</p>
+        {% endif %}
+    </div> <!-- End messages -->
+</body>
+</html>

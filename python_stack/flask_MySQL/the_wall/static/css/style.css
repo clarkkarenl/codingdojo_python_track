@@ -1,0 +1,74 @@
+* {
+    margin: 0px;
+}
+body {
+    width: 440px;
+    font-family: 'Courier New', Courier, monospace;
+}
+.top {
+    display: inline-block;
+    width: 430px;
+}
+p {
+    text-align: center;
+    font-size: 8pt;
+    font-style: italic;
+}
+h3 {
+    margin-top: 10px;
+    text-align: center;
+    color: black;
+}
+h4 {
+    text-align: center;
+    margin-top: 5px;
+    text-decoration: underline;
+    color: darkslategrey;
+}
+.login, .register {
+    display: inline-block;
+    vertical-align: top;
+    margin-left: 20px;
+    width: 180px;
+}
+.login {
+    margin-left: 20px;
+    border: 1px solid darkblue;
+    background-color: lightblue; 
+}
+.register {
+    border: 1px solid darkgoldenrod;
+    background-color: lightgoldenrodyellow;
+}
+.flash {
+    margin-top: 20px;
+    margin-left: 10px;
+    height: 40%;
+    text-align: center;
+    width: 430px;
+    background-color: red;
+    color: white;
+}
+.success {
+    margin-top: 20px;
+    margin-left: 120px;
+    text-align: center;
+    width: 325px;
+    height: 35px;
+    background-color: green;
+    color: white;
+    padding: 3px 3px;
+}
+form {
+    display: inline-block;
+    width: 170px;
+    margin-top: 5px;
+    padding: 7px;
+    font-size: 8pt;
+}
+.btn {
+    display: inline-block;
+    margin-top: 10px;
+    margin-left: 80px;
+    font-size: 9pt;
+}

@@ -21,11 +21,21 @@ def index():
 @app.route('/get_msgs', methods=['GET'])
 def get_msgs():    
     if session["id"]:
-        msg_query = "SELECT CONCAT(`users`.`first_name`,\" \", `users`.`last_name`) as `user_name`, DATE_FORMAT(`messages`.`created_at`, \"%M %d %Y\") as `created_at` , `messages`.`message` as `message` FROM `messages` JOIN `users` ON `users`.`id` = `messages`.`user_id` WHERE `messages`.`user_id` = :field_one ORDER BY `messages`.`created_at` DESC;"
+        msg_query = "SELECT CONCAT(`users`.`first_name`,\" \", `users`.`last_name`) as `user_name`, DATE_FORMAT(`messages`.`created_at`, \"%M %d %Y\") as `created_at` , `messages`.`id` as `message_id`, `messages`.`message` as `message` FROM `messages` JOIN `users` ON `users`.`id` = `messages`.`user_id` WHERE `messages`.`user_id` = :field_one ORDER BY `messages`.`created_at` DESC;"
         user_data = { 'field_one': session["id"]}
         msg_list = mysql.query_db(msg_query, user_data)
+        msg_data = ''
 
-        return render_template('wall.html', msg_list = msg_list)
+        for m in msg_list:
+            msg_data += (str(m['message_id']) + ',')
+
+        msg_data = msg_data[:-1]
+
+        comment_query = "SELECT `messages`.`id` as `message_id`, `comments`.`id` as `comment_id`, `comments`.`comment` as `comment`, DATE_FORMAT(`comments`.`created_at`, \"%M %d %Y\") as `created_at` FROM `messages` JOIN `comments` ON `messages`.`id` = `comments`.`message_id` WHERE  `messages`.`id` IN (:field_one) ORDER BY `comments`.`created_at` ASC;"
+        comment_data = { 'field_one': msg_data }
+        comment_list = mysql.query_db(comment_query, comment_data)
+
+        return render_template('wall.html', msg_list = msg_list, comment_list = comment_list)
     else:
         flash("You are not logged in")
         return render_template('index.html')
@@ -43,11 +53,33 @@ def post_msg():
                 'field_one' : session['id'],
                 'field_two' : new_msg
             }
+            # TODO Include any comments for each message
             msg_added = mysql.query_db(new_msg_query, new_msg_data)
             return redirect('/get_msgs')
     else:
         flash("You are not logged in")
         return redirect('/')
+
+@app.route('/post_comment', methods=['POST'])
+def post_msg_comment():
+    if session["id"]:
+        new_comment = request.form['msg_comment']
+        msg_id = request.form['msg_id']
+        if len(new_comment) == 0:
+            return redirect('/get_msgs')
+        else:
+            new_comment_query = "INSERT INTO `comments`(`message_id`,  `user_id`, `comment`, `created_at`, `updated_at`) VALUES (:field_one, :field_two, :field_three, now(), now());"
+            new_comment_data = {
+                'field_one' : msg_id,
+                'field_two' : session['id'], 
+                'field_three' : new_comment
+            }
+            comment_added = mysql.query_db(new_comment_query, new_comment_data)
+            return redirect('/get_msgs')
+    else:
+        flash("You are not logged in")
+        return redirect('/')
+
 
 @app.route('/register', methods=['POST'])
 def result():

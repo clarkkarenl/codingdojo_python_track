@@ -27,6 +27,9 @@ body { /* All body base styling */
 .wall_post_msg {
     width: 650px;
 }
+.wall_post_msg .wall_msg_form {
+    margin: 1px 0px;
+}
 .wall_post_msg h5 { /* post message heading */
     text-align: left;
     color: darkslategrey;
@@ -40,10 +43,26 @@ body { /* All body base styling */
     background-color: cornflowerblue;
     color: white;
 }
+.wall_msg_comment_btn {
+    height: 20px;
+    margin-top: 5px;
+    margin-left: 290px;
+    font-size: 9pt;
+    background-color: seagreen;
+    color: white;
+}
 .wall_msg { /* post message text area */
-    text-align: top;
     width: 400px;
     height: 80px;
+    font-size: 8pt;
+    border: 2px solid #cccccc;
+	background-position: bottom right;
+    background-repeat: no-repeat;
+}
+.wall_msg_comment {
+    margin-left: 20px;
+    width: 300px;
+    height: 40px;
     font-size: 8pt;
     border: 2px solid #cccccc;
 	background-position: bottom right;
@@ -97,8 +116,7 @@ h4 { /* Login/Reg page page header */
     background-color: lightgoldenrodyellow;
 }
 .flash { /* All flash messages base styling */
-    margin-top: 20px;
-    margin-left: 10px;
+    margin: 10px 0px 0px 10px;
     height: 40%;
     text-align: center;
     width: 430px;

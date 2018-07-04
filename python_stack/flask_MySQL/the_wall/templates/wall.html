@@ -35,6 +35,12 @@
                 {% for msg in msg_list %}
                 <ul><span>{{ msg['user_name'] }} - {{ msg['created_at'] }}</span>
                     <li>{{ msg['message'] }}</li>
+                    <form action='/delete_own_msg' method='post'>
+                        {% set msg_id = msg['message_id']|int %}
+                        <input type="hidden" id="msg_id" name="msg_id" value="{{ msg_id }}">
+                        <input type="hidden" id="user_id" name="user_id" value="{{ session["id"] }}">
+                        <input type="submit" class="wall_msg_delete_btn" name="delete_msg" value="Delete This Message">
+                    </form>
                     {% if comment_list %}
                     <ul>
                         {% for comment in comment_list %}

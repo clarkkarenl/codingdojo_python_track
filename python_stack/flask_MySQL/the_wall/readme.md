@@ -1,6 +1,6 @@
 Assignment: The Wall
 Karen Clark
-2018-07-01
+2018-07-03
 
 Create a wall/forum page where users will be able to post a message and see the message displayed by other users. Store the messages in a table called 'messages' and retrieve the messages from the database. Follow the below wireframe.
 

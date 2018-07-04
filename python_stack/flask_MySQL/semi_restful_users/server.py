@@ -65,7 +65,7 @@ def create():
 
 
 # GET /users/<id>/destroy - calls the destroy method to remove a particular user with the given id. Have this redirect back to /users once deleted.
-@app.route('/users/<id>/destroy', methods=['POST'])
+@app.route('/users/<id>/destroy', methods=['GET'])
 def destroy(id):
     delete_user_query = "DELETE FROM `users` WHERE `users`.`id` = :field_one;"
     delete_user_data = {'field_one' : id}

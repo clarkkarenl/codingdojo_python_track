@@ -21,18 +21,18 @@ def index():
 @app.route('/get_msgs', methods=['GET'])
 def get_msgs():    
     if session["id"]:
-        msg_query = "SELECT CONCAT(`users`.`first_name`,\" \", `users`.`last_name`) as `user_name`, DATE_FORMAT(`messages`.`created_at`, \"%M %d %Y\") as `created_at` , `messages`.`id` as `message_id`, `messages`.`message` as `message` FROM `messages` JOIN `users` ON `users`.`id` = `messages`.`user_id` WHERE `messages`.`user_id` = :field_one ORDER BY `messages`.`created_at` DESC;"
-        user_data = { 'field_one': session["id"]}
-        msg_list = mysql.query_db(msg_query, user_data)
-        msg_data = ''
+        msg_query = "SELECT CONCAT(`users`.`first_name`,\" \", `users`.`last_name`) as `user_name`, DATE_FORMAT(`messages`.`created_at`, \"%M %d %Y\") as `created_at` , `messages`.`id` as `message_id`, `messages`.`message` as `message` FROM `messages` JOIN `users` ON `users`.`id` = `messages`.`user_id` ORDER BY `messages`.`created_at` DESC;"
 
+        msg_list = mysql.query_db(msg_query)
+
+        msg_data = list()
         for m in msg_list:
-            msg_data += (str(m['message_id']) + ',')
+            msg_data.append(str(m['message_id']))
 
         msg_data = msg_data[:-1]
 
-        comment_query = "SELECT `messages`.`id` as `message_id`, `comments`.`id` as `comment_id`, CONCAT(`users`.`first_name`,\" \", `users`.`last_name`) as `user_name`, `comments`.`comment` as `comment`, DATE_FORMAT(`comments`.`created_at`, \"%M %d %Y\") as `created_at` FROM `messages` JOIN `comments` ON `messages`.`id` = `comments`.`message_id` LEFT JOIN `users` ON `comments`.`user_id` = `users`.`id` WHERE  `messages`.`id` IN (:field_one) ORDER BY `comments`.`created_at` ASC;"
-        
+        comment_query = "SELECT `messages`.`id` as `message_id`, `comments`.`id` as `comment_id`, CONCAT(`users`.`first_name`,\" \", `users`.`last_name`) as `user_name`, `comments`.`comment` as `comment`, DATE_FORMAT(`comments`.`created_at`, \"%M %d %Y\") as `created_at` FROM `messages` JOIN `comments` ON `messages`.`id` = `comments`.`message_id` LEFT JOIN `users` ON `comments`.`user_id` = `users`.`id` WHERE  `messages`.`id` IN :field_one ORDER BY `comments`.`created_at` ASC;"
+
         comment_data = { 'field_one': msg_data }
         comment_list = mysql.query_db(comment_query, comment_data)
 

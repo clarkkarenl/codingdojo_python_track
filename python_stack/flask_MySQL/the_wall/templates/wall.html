@@ -36,14 +36,18 @@
                 <ul><span>{{ msg['user_name'] }} - {{ msg['created_at'] }}</span>
                     <li>{{ msg['message'] }}</li>
                     {% if comment_list %}
+                    <ul>
                         {% for comment in comment_list %}
-                            <ul><span>{{ comment['user_name'] }} - {{ comment['created_at'] }}</span>
+                            {% if comment['message_id'] == msg['message_id']  %}
+                                <li><span>{{ comment['user_name'] }} - {{ comment['created_at'] }}</span></li>
                                 <li>{{ comment['comment'] }}</li>
+                            {% endif %}
                         {% endfor %}
                     {% endif %}
                     </ul>
                     <form action='/post_comment' method='post'>
-                        <!-- <input type="hidden" id="msg_id" name="msg_id" value="\" + {{ msg_id }} + \">" -->
+                        {% set msg_id = msg['message_id']|int %}
+                        <input type="hidden" id="msg_id" name="msg_id" value="{{ msg_id }}">
                         <textarea class="wall_msg_comment" name="msg_comment" placeholder="Enter your comment here" cols="40" wrap="hard"></textarea>
                         <input type="submit" class="wall_msg_comment_btn" name="post_comment" value="Post a comment">
                     </form>

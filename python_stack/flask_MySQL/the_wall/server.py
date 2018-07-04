@@ -31,7 +31,8 @@ def get_msgs():
 
         msg_data = msg_data[:-1]
 
-        comment_query = "SELECT `messages`.`id` as `message_id`, `comments`.`id` as `comment_id`, `comments`.`comment` as `comment`, DATE_FORMAT(`comments`.`created_at`, \"%M %d %Y\") as `created_at` FROM `messages` JOIN `comments` ON `messages`.`id` = `comments`.`message_id` WHERE  `messages`.`id` IN (:field_one) ORDER BY `comments`.`created_at` ASC;"
+        comment_query = "SELECT `messages`.`id` as `message_id`, `comments`.`id` as `comment_id`, CONCAT(`users`.`first_name`,\" \", `users`.`last_name`) as `user_name`, `comments`.`comment` as `comment`, DATE_FORMAT(`comments`.`created_at`, \"%M %d %Y\") as `created_at` FROM `messages` JOIN `comments` ON `messages`.`id` = `comments`.`message_id` LEFT JOIN `users` ON `comments`.`user_id` = `users`.`id` WHERE  `messages`.`id` IN (:field_one) ORDER BY `comments`.`created_at` ASC;"
+        
         comment_data = { 'field_one': msg_data }
         comment_list = mysql.query_db(comment_query, comment_data)
 

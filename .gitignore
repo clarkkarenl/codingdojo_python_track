@@ -1,4 +1,4 @@
-python_stack/myEnvironments/flaskEnv/tcl/tcl8.5/tzdata/Etc/UTC
+python_stack/myEnvironments/
 python_stack/myEnvironments/flaskEnv/Include/Python.h
 python_stack/myEnvironments/flaskEnv/Include/Python-ast.h
 python_stack/myEnvironments/flaskEnv/Include/abstract.h
@@ -5842,3 +5842,4 @@ python_stack/myEnvironments/flaskEnv/Lib/site-packages/pytz-2018.5.dist-info/WHE
 python_stack/myEnvironments/flaskEnv/Lib/site-packages/pytz-2018.5.dist-info/metadata.json
 python_stack/myEnvironments/flaskEnv/Lib/site-packages/pytz-2018.5.dist-info/top_level.txt
 python_stack/myEnvironments/flaskEnv/Lib/site-packages/pytz-2018.5.dist-info/zip-safe
+python_stack/myEnvironments/djangoEnv/Include/Python.h

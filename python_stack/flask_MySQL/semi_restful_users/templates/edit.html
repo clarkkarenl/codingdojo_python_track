@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
-    <title>Create a User</title>
+    <title>Edit a User</title>
 </head>
 <body>
     <div class="flash">
@@ -17,16 +17,17 @@
             {% endif %}
         {% endwith %}
     </div> <!-- End flash -->
-    <div class="create_user">
-        <form action="/users/create" method="post">
+    <div class="edit_user">
+        <form action="/users/<id>" method="post">
             First name:<input type="text" name="first_name" value="{{ user['first_name'] }}">
             Last name:<input type="text" name="last_name" value="{{ user['last_name'] }}"  >
             Email address:<input type="text" name="email" value="{{ user['email'] }}">
-            <input type="submit" name="submit" value="Update">
+            <input type="hidden" name="user_id" value="{{ user['user_id'] }}">
+            <input type="submit" class="btn" name="submit" value="Update">
         </form>
     </div>
     <div class="user_actions">
-            <p><a href="/users/{{ user['id'] }}">Show</a> | <a href="/users">Go back</a></p>
+            <p><a href="/users/{{ user['user_id'] }}">Show</a> | <a href="/users">Go back</a></p>
         </div>
 </body>
 </html>

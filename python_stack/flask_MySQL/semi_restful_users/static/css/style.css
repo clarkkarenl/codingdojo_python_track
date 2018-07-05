@@ -56,6 +56,14 @@ form { /* All forms base styling */
     padding: 7px;
     font-size: 8pt;
 }
-.show_user {
+.user_actions {
+    margin-top: 10px;
     padding: 0px 0px 10px 0px;
+}
+.btn { 
+    display: inline-block;
+    color: white;
+    background-color: teal;
+    margin-top: 10px;
+    font-size: 8pt;
 }

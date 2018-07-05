@@ -1,4 +1,4 @@
-from flask import Flask, request, redirect, session, render_template, flash
+from flask import Flask, request, redirect, session, render_template, flash, url_for
 from mysqlconnection import MySQLConnector
 
 app = Flask(__name__)
@@ -16,7 +16,6 @@ def index():
 # GET request /users/<id>/edit - calls the edit method to display a form allowing users to edit an existing user with the given id. 
 @app.route('/users/<id>/edit', methods=['GET'])
 def edit(id):
-    
     get_edit_user_query = "SELECT `users`.`id` as `user_id`,`users`.`first_name` as `first_name`, `users`.`last_name` as `last_name`, `users`.`email` as `email` FROM `users` WHERE `users`.`id` = :field_one;"
 
     get_edit_user_data = {'field_one' : id}
@@ -26,7 +25,26 @@ def edit(id):
 
 
 # POST /users/<id> - calls the update method to process the submitted form sent from /users/<id>/edit. Have this redirect to /users/<id> once updated.
+@app.route('/users/<id>', methods=['POST'])
+def update(id):
+    user_id = int(str(request.form["user_id"]))
+    first_name = request.form["first_name"]
+    last_name = request.form["last_name"]
+    email = request.form["email"]
 
+    update_user_query = "UPDATE `users` SET `users`.`first_name`=:field_one, `users`.`last_name`=:field_two , `users`.`email`=:field_three, `users`.`updated_at`=now() WHERE `users`.`id` = :field_four;"
+    update_user_data = {
+        'field_one' : first_name,
+        'field_two' : last_name,
+        'field_three' : email,
+        'field_four' : user_id
+    }
+    update_user = mysql.query_db(update_user_query, update_user_data)
+
+    print "update" + (" =" * 80)
+    print type(id)
+
+    return redirect(url_for('show', id=user_id))
 
 # GET /users/<id> - calls the show method to display the info for a particular user with given id.
 @app.route('/users/<id>', methods=['GET'])

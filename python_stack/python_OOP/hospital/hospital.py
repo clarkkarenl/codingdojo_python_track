@@ -20,10 +20,10 @@ class Patient(object):
         Patient.patient_count += 1
 
     def patient_info(self):
-        print self.id
-        print self.name
-        print self.allergies
-        print self.bed_num
+        print "Patient id:", self.id
+        print "Patient name:", self.name
+        print "Allergies:", self.allergies
+        print "Bed id:", self.bed_num
 
 # Hospital
 # Attributes:
@@ -46,15 +46,37 @@ class Hospital(object):
             })
         return beds
 
-    def admit(self, patient):
-        
-        self.patients.append(patient) 
-
-
-# Methods:
 # * Admit: add a patient to the list of patients. Assign the patient a bed number. If the length of the list is >= the capacity do not admit the patient. Return a message either confirming that admission is complete or saying the hospital is full.
-# * Discharge: look up and remove a patient from the list of patients. Change bed number for that patient back to none.
-# This is a challenging assignment. Ask yourself what input each method requires and what output you will need.
+    def admit(self, patient):
+        if len(self.patients) < self.capacity:
+            self.patients.append(patient) 
+            for i in range(0, len(self.beds)):
+                if self.beds[i]['available']:
+                    patient.bed_num = self.beds[i]['bed_id']
+                    self.beds[i]['available'] = False
+                    break
+            print "Patient {} admitted to bed {}".format(patient.id, patient.bed_num)
+        else:
+            print "Hospital is at maxiumum capacity. Please try another hospital."
 
-p1 = Patient("John", "Penicillin")
-p1.assign_bed(2).patient_info()
+# * Discharge: look up and remove a patient from the list of patients. Change bed number for that patient back to none.
+    def hospital_info(self):
+        print "Hospital name:", self.name
+        print "Patient capacity:", self.capacity
+        print "Patient list:"
+        for p in self.patients:
+            print "* Patient", p.name, "- bed", p.bed_num
+        return self
+
+
+p1 = Patient("John Smith", "Penicillin")
+p2 = Patient("Mary Johnson", "None")
+p3 = Patient("Allen Wrench", "Iron")
+p4 = Patient("M'baku", "None")
+
+h1 = Hospital("St. John", 3)
+h1.admit(p1)
+h1.admit(p4)
+h1.admit(p2)
+h1.admit(p3)
+h1.hospital_info()

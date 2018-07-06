@@ -56,7 +56,8 @@ class CallCenter(object):
         self.calls.pop(0)
         self.queue_size -= 1
         return self
-    
+
+# Ninja Level: add a method to call center class that can find and remove a call from the queue according to the phone number of the caller.
     def remove_by_pn(self, pn):
         for call in self.calls:
             if call.phone_number == pn:
@@ -69,7 +70,8 @@ class CallCenter(object):
             print "|", call.name, "|", call.phone_number, "|"
         print "Queue size:", self.queue_size
         return self
-    
+
+# Hacker Level: If everything is working properly, your queue should be sorted by time, but what if your calls get out of order? Add a method to the call center class that sorts the calls in the queue according to time of call in ascending order.    
     def sort(self):
         for i in range(0, self.queue_size):
             for j in range(0, self.queue_size - i - 1):
@@ -93,5 +95,3 @@ cc1.remove_by_pn("650-123-4567").info()
 # cc1.remove().info()
 
 # You should be able to test your code to prove that it works. Remember to build one piece at a time and test as you go for easier debugging!
-# Ninja Level: add a method to call center class that can find and remove a call from the queue according to the phone number of the caller.
-# Hacker Level: If everything is working properly, your queue should be sorted by time, but what if your calls get out of order? Add a method to the call center class that sorts the calls in the queue according to time of call in ascending order.

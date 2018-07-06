@@ -11,12 +11,16 @@
 # * Allergies
 # * Bed number: should be none by default
 class Patient(object):
-    def __init__(self, name, allergies, bed_num=None):
+    patient_count = 0
+    def __init__(self, name, allergies):
+        self.id = Patient.patient_count
         self.name = name
         self.allergies = allergies
-        self.bed_num = bed_num
+        self.bed_num = None
+        Patient.patient_count += 1
 
     def patient_info(self):
+        print self.id
         print self.name
         print self.allergies
         print self.bed_num
@@ -31,26 +35,19 @@ class Hospital(object):
         self.name = name
         self.capacity = capacity
         self.patients = []
-        self.beds = []
+        self.beds = self.initialize_beds()
 
-
-    # def assign_bed(self, bed_num):
-    #     Patient.bed_num = bed_num
-    #     return self
-
-    def bed_list(self):
-        for bed in self.beds:
-            print bed
-        return self
+    def initialize_beds(self):
+        beds = []
+        for i in range(0, self.capacity):
+            beds.append({
+                "bed_id": i,
+                "available" : True
+            })
+        return beds
 
     def admit(self, patient):
         
-        # keep a list of beds
-        # if beds full, reject request
-        # else give the patient a bed num
-        # update bed_num value on patient
-        # Patient.bed_num = bed_num
-        # if that is successful, add patient to list
         self.patients.append(patient) 
 
 

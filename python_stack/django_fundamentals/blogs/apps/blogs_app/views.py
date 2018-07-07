@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-from django.shortcuts import render, HttpResponse, redirect
+from django.shortcuts import HttpResponse, redirect, render
 
 # / - display "placeholder to later display all the list of 
 # blogs" via HttpResponse. Have this be handled by a method 
@@ -39,4 +39,3 @@ def edit(request, number):
 # 'destroy'. For now, have this url redirect to /. 
 def destroy(request, number):
     return redirect('/')
-

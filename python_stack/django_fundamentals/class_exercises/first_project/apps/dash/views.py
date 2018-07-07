@@ -1,9 +1,16 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-from django.shortcuts import render
+from django.shortcuts import render, HttpResponse, redirect
 
-# Create your views here.
+# # Create your views here.
+# def index(request):
+#     print request
+#     return render(request, 'dash/index.html')
+
 def index(request):
-    print request
-    return render(request, 'dash/index.html')
+    context = {
+        "email" : "blog@gmail.com",
+        "name" : "mike"
+    }
+    return render(request, "dash/index.html", context)

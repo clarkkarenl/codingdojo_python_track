@@ -1,6 +1,6 @@
 Assignment: Random Word Generator
 Karen Clark
-2018-07-07
+2018-07-08
 
 Create a new Django app called 'random_word'. Your template will show a random word with 14 characters in length.
 

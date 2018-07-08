@@ -19,11 +19,11 @@
     </div>
     <form action="/random_word_app/generate/" method="post">
         {% csrf_token %}
-        <input type="submit" class="btn" value="Generate">
+        <input type="submit" class="generate_btn" value="Generate">
     </form>
     <form action="/random_word_app/reset/" method="post">
         {% csrf_token %}
-        <input type="submit" class="btn" value="Start Over">
+        <input type="submit" class="reset_btn" value="Reset">
     </form>
 </body>
 </html>

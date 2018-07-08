@@ -18,7 +18,7 @@ def generate(request):
     # num_visits=request.session.get('num_visits', 0)
     # request.session['num_visits'] = num_visits+1
     # 'num_visits':num_visits
-    count_var = request.session['counter']
+    count_var = request.session.get('counter')
     request.session['counter'] = count_var + 1
 
     context = {

@@ -6,20 +6,23 @@ from django.utils.crypto import get_random_string
 
 # Create your views here.
 def index(request):
-    count_var = request.session.get('counter', 1)
+    # if it's the users first visit, won't have this var,
+    # so set it
+    if 'counter' not in request.session:
+        request.session['counter'] = 1
+
+    count_var = request.session['counter']
 
     context = {
-        "count_var" : int(count_var),
+        "count_var" : count_var,
         "word" : get_random_string(14)
     }
     return render(request,'random_word_app/index.html', context)
 
 def generate(request):
-    # num_visits=request.session.get('num_visits', 0)
-    # request.session['num_visits'] = num_visits+1
-    # 'num_visits':num_visits
     count_var = request.session.get('counter')
-    request.session['counter'] = count_var + 1
+    count_var += 1
+    request.session['counter'] += 1
 
     context = {
         "count_var" : count_var,

@@ -4,13 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'time_app/css/style.css' %}" />
     <title>Current Time</title>
 </head>
 <body>
-    <div>
-        <p>The current time and date</p>
+    <div class="header">
+        <p>The current time and date:</p>
     </div>
-    <div class="line">
+    <div class="date_time">
         {{ date_output }}
         <br>
         {{ time_output }}

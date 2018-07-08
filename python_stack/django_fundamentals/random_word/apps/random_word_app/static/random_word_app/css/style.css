@@ -1,0 +1,32 @@
+* {
+    color: darkblue;
+}
+body {
+    width: 400px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+div {
+    text-align: center;
+}
+.header {
+    font-size: 7pt;
+    margin: 50px 0px 5px 150px;
+    width: 220px;
+}
+.main {
+    width: 400px;
+    margin-left: 150px;
+}
+.word {
+    border: 1px solid black;
+    width: 200px;
+    padding: 5px;
+    margin: 5px 5px 5px 5px;
+    font-size: 14pt;
+}
+.btn {
+    background-color: darkblue;
+    color: white;
+    height: 30px;
+    margin: 20px 0px 0px 225px;
+}

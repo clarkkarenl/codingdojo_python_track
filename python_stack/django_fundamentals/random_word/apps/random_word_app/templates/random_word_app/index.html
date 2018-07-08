@@ -6,18 +6,24 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     {% load static %}
     <link rel="stylesheet" type="text/css" href="{% static 'random_word_app/css/style.css' %}" />
-    <title>Document</title>
+    <title>Random Word Generator</title>
 </head>
 <body>
     <div class="header">
         <p>Random Word Generator (attempt # {{ count_var }})</p>
     </div>
-    <div class="word">
-        {{ word }}
+    <div class="main">
+        <div class="word">
+            {{ word }}
+        </div>
     </div>
     <form action="/random_word_app/generate/" method="post">
         {% csrf_token %}
         <input type="submit" class="btn" value="Generate">
+    </form>
+    <form action="/random_word_app/reset/" method="post">
+        {% csrf_token %}
+        <input type="submit" class="btn" value="Start Over">
     </form>
 </body>
 </html>

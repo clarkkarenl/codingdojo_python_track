@@ -4,9 +4,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'survey/css/style.css' %}" />
     <title>Survey Form</title>
 </head>
 <body>
-    <p>foo!</p>
+    <form action="/survey/process" method="post">
+        {% csrf_token %}
+        <label>Your Name:</label> <input type="text" name="name">
+        <label>Dojo Location:</label> <select name='dojo_loc'>
+            <option value="chicago">Chicago</option>
+            <option value="dallas">Dallas</option>
+            <option value="east bay">East Bay</option>
+            <option value="los angeles">Los Angeles</option>
+            <option value="san jose" selected="selected">San Jose</option>
+            <option value="seattle">Seattle</option>
+            <option value="tulsa">Tulsa</option>
+        </select><br>
+        <!-- drop down -->
+        <label>Favorite Language:</label> <select name='fav_lang'>
+            <option value="go">Go</option>
+            <option value="javascript">JavaScript</option>
+            <option value="python" selected="selected">Python</option>
+            <option value="ruby">Ruby</option>
+            <option value="scala">Scala</option>
+        </select><br>
+        <label>Comment (optional):</label> <textarea name="comment" rows="3" cols="45"></textarea><br>
+        <input type="submit" value="Submit">
+    </form>
 </body>
 </html>

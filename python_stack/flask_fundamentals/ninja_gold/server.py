@@ -10,9 +10,9 @@ app.secret_key = 'ThisIsSecret'
 
 @app.route('/')
 def index():
-    if not session['balance']:
+    if 'balance' not in session:
         session['balance'] = 0
-    if not session['activities']:
+    if 'activities' not in session:
         session['activities'] = ""
     return render_template('index.html')
 

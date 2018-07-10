@@ -12,26 +12,28 @@ def index(request):
         dojo_loc = ""
     if 'fav_lang' not in request.session:
         fav_lang = ""
-    if 'comments' not in request.session:
-        comments = ""
+    if 'comment_box' not in request.session:
+        comment_box = ""
     return render(request, "survey/index.html")
 
 def process(request):
-    if request.method == 'POST':
-        if 'name' not in request.session:
-            name = request.session.get('name')
-        if 'dojo_loc' not in request.session:
-            dojo_loc = request.session.get('dojo_loc')
-        if 'fav_lang' not in request.session:
-            fav_lang = request.session.get('fav_lang')
-        if 'comments' not in request.session:
-            comments = request.session.get('comments')
+    name = request.POST['name']
+    dojo_loc = request.POST['dojo_loc']
+    fav_lang = request.POST['fav_lang']
+    comment_box = request.POST['comment_box']
 
-        if not name or not dojo_loc or not fav_lang:
-            messages.error(request, "Please provide values for all fields")
-        
-        return redirect("result.html")
-        
+    context = {
+        "name" : name,
+        "dojo_loc" : dojo_loc,
+        "fav_lang" : fav_lang,
+        "comment_box" : comment_box
+    }
+
+    if not name or not dojo_loc or not fav_lang:
+        messages.error(request, "Please provide values for all fields")
+    
+    return redirect("survey/result", context)
+
 
 def result(request):
-    return redirect("/")
+    return render(request, "survey/result.html")

@@ -10,8 +10,10 @@ app.secret_key = 'ThisIsSecret'
 
 @app.route('/')
 def index():
-    session['balance'] = 0
-    session['activities'] = ""
+    if not session['balance']:
+        session['balance'] = 0
+    if not session['activities']:
+        session['activities'] = ""
     return render_template('index.html')
 
 @app.route('/reset', methods=['POST'])
@@ -61,6 +63,7 @@ def process_money():
             # else new_gold was 0
             else:
                 session['activities'] = "Entered a casino but did not win or lose gold. (" + timestamp.strftime("%Y/%m/%d %I:%M %p") + ")<br/>" + session['activities']
-        return render_template('index.html')
-    
-app.run(debug=True)
+        return redirect('/')
+
+if __name__ == '__main__':
+    app.run(debug=True)

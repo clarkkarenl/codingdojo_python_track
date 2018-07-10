@@ -9,17 +9,10 @@
     <title>Survey Form</title>
 </head>
 <body>
-    {% if messages %}
-    <ul class="messages">
-        {% for message in messages %}
-        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-        {% endfor %}
-    </ul>
-    {% endif %}
-    <form action="/survey/process" method="post">
+    <form action="/survey/process/" method="post">
         {% csrf_token %}
         <label>Your Name:</label><input type="text" name="name">
-        <label>Dojo Location:</label><select name='dojo_loc'>
+        <label>Dojo Location:</label><select name="dojo_loc">
             <option value="chicago">Chicago</option>
             <option value="dallas">Dallas</option>
             <option value="east bay">East Bay</option>
@@ -29,7 +22,7 @@
             <option value="tulsa">Tulsa</option>
         </select><br>
         <!-- drop down -->
-        <label>Favorite Language:</label><select name='fav_lang'>
+        <label>Favorite Language:</label><select name="fav_lang">
             <option value="go">Go</option>
             <option value="javascript" selected="selected">JavaScript</option>
             <option value="python">Python</option>

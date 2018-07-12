@@ -12,10 +12,10 @@
 	<div id="container">
 		<h3><u>Submitted Info</u></h3>
 		<div id="data">
-			<p><label>Your Name:</label> {{ name.title() }}</p>
-			<p><label>Dojo Location:</label> {{ dojo_loc.title() }}</p>
-			<p><label>Favorite Language:</label> {{ fav_lang.title() }}</p>
-			<p><label>Comments:</label>  {{ comment_box.capitalize() }}</p>
+			<p><label>Your Name:</label> {{ request.session.data.name.title }}</p>
+			<p><label>Dojo Location:</label> {{ request.session.data.dojo_loc.title }}</p>
+			<p><label>Favorite Language:</label> {{ request.session.data.fav_lang.title }}</p>
+			<p><label>Comments:</label>  {{ request.session.data.comment_box.capitalize }}</p>
         </div>
 	</div>
 </body>

@@ -5,23 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     {% load static %}
-    <link rel="stylesheet" type="text/css" href="{% static 'survey/css/style.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'words/css/style.css' %}" />
     <title>Survey Form</title>
 </head>
 <body>
-    <h2>Add a new word</h2>
-    <form action="/words/process/" method="post">
-        {% csrf_token %}
-        <input type="text" name="word">
-        <h5>Choose Color</h5>
-        <ul>
-            <li><label>Blue</label><input type="radio" name="color" value="blue" checked></li>
-            <li><label>Green</label><input type="radio" name="color" value="green"></li>
-            <li><label>Red</label><input type="radio" name="color" value="red"></li>
-        </ul>
-        <input type="checkbox" name="font"><label>show in BIG fonts!</label>
-        <br>
-        <input type="submit" class="btn" value="Submit">
-    </form>
+    <div class="form">
+        <h2>Add a new word</h2>
+        <form action="/words/process/" method="post">
+            {% csrf_token %}
+            <input type="text" name="word">
+            <h5>Choose Color</h5>
+            <ul>
+                <li><label>Blue</label><input type="radio" name="color" value="blue" checked></li>
+                <li><label>Green</label><input type="radio" name="color" value="green"></li>
+                <li><label>Red</label><input type="radio" name="color" value="red"></li>
+            </ul>
+            <input type="checkbox" name="font"><label>show in BIG fonts!</label>
+            <br>
+            <input type="submit" class="submit_btn" value="Submit">
+        </form>
+    </div> <!-- end form -->
+    <div class="result">
+        <input type="submit" class="clear_btn" value="Clear Session">
+    </div>
 </body>
 </html>

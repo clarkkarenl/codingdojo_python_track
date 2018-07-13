@@ -6,12 +6,12 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     {% load static %}
     <link rel="stylesheet" type="text/css" href="{% static 'words/css/style.css' %}" />
-    <title>Survey Form</title>
+    <title>Session Words</title>
 </head>
 <body>
     <div class="form">
         <h2>Add a new word</h2>
-        <form action="/words/process/" method="post">
+        <form action="/add_word" method="post">
             {% csrf_token %}
             <input type="text" name="word">
             <h5>Choose Color</h5>
@@ -22,11 +22,21 @@
             </ul>
             <input type="checkbox" name="font"><label>show in BIG fonts!</label>
             <br>
-            <input type="submit" class="submit_btn" value="Submit">
+            <input type="submit" class="submit_btn" value="Add to Session">
         </form>
     </div> <!-- end form -->
-    <div class="result">
-        <input type="submit" class="clear_btn" value="Clear Session">
+    <div class="right_side">
+        <div class="clear">
+            <form action="/clear_session" method="post">
+                {% csrf_token %}
+                <input type="submit" class="clear_btn" value="Clear Session">
+            </form>
+        </div> <!-- end clear -->
+        <div class="word_container">
+            {% for entry in word_list %}
+                <p class="{{ entry.font }}" style="color:{{ entry.color }};">{{ entry.word }} {{ entry.ts }}</p>
+            {% endfor %}
+        </div>
     </div>
 </body>
 </html>

@@ -3,7 +3,6 @@ from . import views
 
 urlpatterns = [
     url(r'^', views.index),
-    url(r'^word/$', views.index)
-    # url(r'^random_word_app/generate/$', views.generate),
-    # url(r'^random_word_app/reset/$', views.reset)
+    url(r'^add_word$', views.add_word),
+    url(r'^clear_session$', views.clear_session)
 ]

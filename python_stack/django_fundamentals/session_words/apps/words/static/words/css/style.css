@@ -2,23 +2,29 @@
     color: blue;
 }
 body {
-    width: 500px;
+    width: 480px;
     height: 300px;
 }
 .form {
     display: inline-block;
-    width: 240px;
+    width: 225px;
     height: 100%;
     border: 1px solid white;
 }
-.result {
+.right_side {
     display: inline-block;
     vertical-align:top;
-    width: 240 px;
+    width: 225 px;
     height: 100%;
     margin-top: 30px;
     border-left: 1px solid black;
 }
 .clear_btn {
     margin-left: 100px;
+}
+.word_container {
+    display: inline-block;
+    width: 240 px;
+    height: 100%;
+    
 }

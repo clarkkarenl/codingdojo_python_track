@@ -1,0 +1,18 @@
+* { 
+    outline: 1px dashed red;
+}
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    color: black;
+    font-size: 10pt;
+}
+table {
+    width: 80%;
+    border-collapse: collapse;
+}
+th {
+    height: 50px;
+}
+table, th, td {
+    border: 1px solid black;
+}

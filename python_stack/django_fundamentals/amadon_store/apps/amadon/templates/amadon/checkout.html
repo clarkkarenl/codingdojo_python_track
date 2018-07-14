@@ -9,9 +9,9 @@
     <title>Thank you for your purchase!</title>
 </head>
 <body>
-    <h3>Thanks you for your business!</h3>
-    <p>We charged your credit card ${{ tally.total_cost }}  </p>
-    <p>You have ordered {{ tally.total_items }} and spent ${{ tally.lifetime_spend }} with Amadon.com. </p>
+    <h3>Thank you for your business!</h3>
+    <p>We charged your credit card ${{ request.session.tally.total_cost }}.</p>
+    <p>You have ordered {{ request.session.tally.lifetime_items }} items and spent ${{ request.session.tally.lifetime_spend }} with Amadon.com so far! </p>
 </body>
     <footer>
         <a href="/">Go back</a>

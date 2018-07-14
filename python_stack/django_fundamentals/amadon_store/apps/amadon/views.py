@@ -4,28 +4,17 @@ from __future__ import unicode_literals
 from datetime import datetime
 from django.shortcuts import render, redirect
 
-# Create your views here.
+
 def index(request):
     # Initialize purchases if not exists
     if 'purchases' not in request.session:
         request.session['purchases'] = []
     # Initialize totals if not exists
-    print request.session
-    if 'total_cost' not in request.session:
-        request.session.total_cost = 0
-    if 'total_items' not in request.session:
-        request.session.total_items = 0
-    if 'lifetime_spend' not in request.session:
-        request.session.lifetime_spend = 0    
+    if 'tally' not in request.session:
+        request.session['tally'] = []
 
-    context = {
-        "purchases" : request.session['purchases'],
-        "total_cost" : request.session.total_cost,
-        "total_items" : request.session.total_items,
-        "lifetime_spend":request.session.lifetime_spend
-    }
+    return render(request, "amadon/index.html")
 
-    return render(request, "amadon/index.html", context)
 
 def buy(request):
     if request.method == 'POST': 
@@ -33,26 +22,21 @@ def buy(request):
         if 'purchases' not in request.session:
             request.session['purchases'] = []
         # Initialize totals if not exists
-        if 'total_cost' not in request.session:
-            request.session.total_cost = 0
-        if 'total_items' not in request.session:
-            request.session.total_items = 0
-        if 'lifetime_spend' not in request.session:
-            request.session.lifetime_spend = 0    
+        if 'tally' not in request.session:
+            request.session['tally'] = []
+   
+        product_id = request.POST['product_id']
+        quantity = int(request.POST['quantity'])
 
         ### PURCHASES ###
         # Handle this purchase. 
         # Make a copy of the list so we can modify
         temp_purchases = request.session['purchases']
 
-        # First update purchases
-        # change all existing "latest" flags to False
+        # Update purchases, change all "latest" flags to False
         for i in temp_purchases:
             if i["latest"] == True:
                 i["latest"] = False
-
-        # Desired output format: 9:15:23pm, June 5th 2017
-        ts = datetime.strftime(datetime.now(), "%Y-%m-%dT%H:%M:%S")
 
         # Presumably in future assignments we'll look
         # these up in a database...? :P
@@ -69,42 +53,38 @@ def buy(request):
         elif request.POST['product_id'] == '1018':
             unit_price = 49.99
 
+        # Capture the timestamp
+        # Desired output format: 2017-06-01T06:15:49
+        ts = datetime.strftime(datetime.now(), "%Y-%m-%dT%H:%M:%S")
+
         # Make a dict for each entry in the list
-        purchase = {
-            "product_id": request.POST['product_id'],
+        new_purchase = {
+            "product_id": product_id,
             "unit_price": unit_price, 
             "ts" : ts,
-            "quantity" : request.POST['quantity'],
+            "quantity" : quantity,
             "latest" : True
         }
-
-        temp_purchases.append(purchase)
+        temp_purchases.append(new_purchase)
         request.session['purchases'] = temp_purchases
 
-        ### TOTALS ###
+        ### TALLY ###
         # Handle the totals for this sale,
-        # and for all time (for this session) 
-        total_cost = unit_price * int(request.POST['quantity'])
-        total_items = int(request.POST['quantity'])
-        lifetime_spend = request.session.lifetime_spend + total_cost
+        # and for all time (for this session)
+        temp_tally = request.session['tally']
+        request.session['tally'] = []
 
-        request.session.total_cost = total_cost
-        print "Total cost:", total_cost
-        request.session.total_items = total_items
-        print "Total items:", total_items
-        request.session.lifetime_spend = lifetime_spend
-        print "Lifetime spend:", lifetime_spend
-
-        context = {
-            "purchases" : request.session['purchases'],
-            "total_cost" : request.session.total_cost,
-            "total_items" : request.session.total_items,
-            "lifetime_spend":request.session.lifetime_spend
+        new_tally = {
+            "total_cost": unit_price * quantity,
+            "total_items": temp_tally.total_items + quantity,
+            "lifetime_spend": temp_tally.lifetime_spend + total_cost
         }
 
+        request.session['tally'] = temp_tally
         request.session.modified = True
 
-    return redirect('/checkout')
+        return redirect('/checkout')
+
 
 def checkout(request):
-    return render(request, "amadon/checkout.html", context)
+    return render(request, "amadon/checkout.html")

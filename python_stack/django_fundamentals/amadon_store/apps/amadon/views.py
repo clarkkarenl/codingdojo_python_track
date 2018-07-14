@@ -11,4 +11,6 @@ def index(request):
 def checkout(request):
     # T-shirt = 1015 = $19.99
     # Sweater = 1016 = $29.99
+    # Cup = 1017 = $4.99
+    # Book = 1018 = $49.99
     return render(request, "amadon/checkout.html")

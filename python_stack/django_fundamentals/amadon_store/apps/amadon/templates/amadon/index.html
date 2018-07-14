@@ -9,7 +9,7 @@
     <title>Welcome to Amadon!</title>
 </head>
 <body>
-    <p>Welcome to the Amadon Store</p>
+    <h4>Welcome to the Amadon Store</h4>
     <div class="items">
         <table>
             <tr>
@@ -47,6 +47,36 @@
                     </form>
                 </td>
             </tr>
+            <tr>
+                <td>Dojo Cup</td>
+                <td>$4.99</td> 
+                <td>
+                    <form action='/amadon/buy' method='post'>
+                        <select name='quantity'>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                        </select>
+                        <input type='hidden' name='product_id' value='1017' />
+                        <input type='submit' name="submit" value='Buy!' />
+                    </form>
+                </td>
+            </tr>
+            <tr>
+                <td>Algorithm Book</td>
+                <td>$49.99</td> 
+                <td>
+                    <form action='/amadon/buy' method='post'>
+                        <select name='quantity'>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                        </select>
+                        <input type='hidden' name='product_id' value='1018' />
+                        <input type='submit' name="submit" value='Buy!' />
+                    </form>
+                </td>
+            </tr>            
         </table>
     </div> <!-- end items -->
 </body>

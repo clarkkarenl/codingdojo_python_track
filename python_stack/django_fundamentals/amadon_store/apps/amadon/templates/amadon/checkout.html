@@ -10,10 +10,10 @@
 </head>
 <body>
     <h3>Thanks you for your business!</h3>
-    <p>We charged your credit card ${{ checkout.total_cost }}  </p>
-    <p>You have ordered {{ checkout.total_items }} and spent ${{ checkout.lifetime_spent }} with Amadon.com. </p>
+    <p>We charged your credit card ${{ request.session.total_cost }}  </p>
+    <p>You have ordered {{ request.session.total_items }} and spent ${{ request.session.lifetime_spend }} with Amadon.com. </p>
 </body>
     <footer>
-        <a href="index.html">Go back</a>
+        <a href="/">Go back</a>
     </footer>
 </html>

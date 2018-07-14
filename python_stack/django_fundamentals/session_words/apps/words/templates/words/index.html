@@ -16,9 +16,9 @@
             <input type="text" name="word">
             <h5>Choose Color</h5>
             <ul>
-                <li><label>Blue</label><input type="radio" name="color" value="blue" checked></li>
-                <li><label>Green</label><input type="radio" name="color" value="green"></li>
-                <li><label>Red</label><input type="radio" name="color" value="red"></li>
+                <li><input type="radio" name="color" value="red"><label>Red</label></li>
+                <li><input type="radio" name="color" value="green"><label>Green</label></li>
+                <li><input type="radio" name="color" value="blue" checked><label>Blue</label></li>
             </ul>
             <input type="checkbox" name="font"><label>show in BIG fonts!</label>
             <br>
@@ -34,7 +34,7 @@
         </div> <!-- end clear -->
         <div class="word_container">
             {% for entry in word_list %}
-                <p class="{{ entry.font }}" style="color:{{ entry.color }};">{{ entry.word }} {{ entry.ts }}</p>
+                <p><span class="{{ entry.font }}" style="color:{{ entry.color }};">{{ entry.word }}</span><span class="ts">- added on {{ entry.ts }}</span></p>
             {% endfor %}
         </div>
     </div>

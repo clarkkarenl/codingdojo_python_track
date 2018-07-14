@@ -1,15 +1,30 @@
-* { 
-    color: blue;
-}
 body {
-    width: 480px;
+    width: 550px;
     height: 300px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 11pt;
 }
 .form {
     display: inline-block;
-    width: 225px;
+    width: 220px;
     height: 100%;
     border: 1px solid white;
+}
+h5 {
+    margin-left: 6px;
+    margin-bottom: 0px;
+}
+ul {
+    list-style-type: none;
+    margin-bottom: 20px;
+    padding: 0;
+}
+li {
+    margin-left: 20px;
+}
+.submit_btn {
+    margin-top: 15px;
+    margin-left: 70px;
 }
 .right_side {
     display: inline-block;
@@ -17,6 +32,7 @@ body {
     width: 225 px;
     height: 100%;
     margin-top: 30px;
+
     border-left: 1px solid black;
 }
 .clear_btn {
@@ -26,5 +42,17 @@ body {
     display: inline-block;
     width: 240 px;
     height: 100%;
-    
+    margin-left: 20px;
+}
+.word_container, p {
+    word-wrap: break-word;
+    overflow-x: auto;
+}
+/* To ensure the font is "big" when checkbox == on*/
+.on {
+    font-size: 14pt;
+}
+/* To ensure timestamp font is uniform and smaller */
+.ts {
+    font-size: 8pt;
 }

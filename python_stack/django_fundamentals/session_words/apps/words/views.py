@@ -32,7 +32,7 @@ def add_word(request):
             "word": request.POST['word'],
             "ts" : ts,
             "color" : request.POST['color'],
-            "font" : request.POST['font']
+            "font" : request.POST.get('font')
         }
 
         temp_list.append(entry)
@@ -43,5 +43,5 @@ def add_word(request):
 
 def clear_session(request):
     if request.method == 'POST':
-        session.clear()
+        request.session.clear()
     return redirect("/")

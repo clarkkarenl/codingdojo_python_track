@@ -1,8 +1,11 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-import datetime, random
-from django.shortcuts import render, redirect
+import datetime
+import random
+
+from django.shortcuts import redirect, render
+
 
 # Create your views here.
 def index(request):
@@ -11,6 +14,7 @@ def index(request):
     if 'activities' not in request.session:
         request.session['activities'] = []
     return render(request, "ninja_gold/index.html")
+
 
 def process_money(request):
     if request.method == 'POST':
@@ -37,7 +41,7 @@ def process_money(request):
                 # lost gold
                 if outcome == 1:
                     request.session['balance'] = int(request.session['balance']) - new_gold
-                    request.session['activities'].append("Entered a casino and lost " + str(new_gold) + " gold...Ouch. (" + timestamp.strftime("%Y/%m/%d %I:%M %p") + ")<br/>")
+                    request.session['activities'].append("<font color='red'> Entered a casino and lost " + str(new_gold) + " gold...Ouch. (" + timestamp.strftime("%Y/%m/%d %I:%M %p") + ")</font><br/>")
                     if request.session['balance'] <= 0:
                         request.session['balance'] = 50
                         request.session['activities'].append("You went bust! Thankfully, your rich uncle paid the debt and gave you 50 gold to keep going. (" + timestamp.strftime("%Y/%m/%d %I:%M %p") + ")<br/>")

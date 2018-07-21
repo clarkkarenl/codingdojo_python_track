@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'users/css/style.css' %}" />
+    <title>Show User</title>
+</head>
+<body>
+    <div class="messages">
+        {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+    </div>
+    <div class="show_user">
+        {{ user.user_id }}
+        Full Name: {{ user.first_name }} {{ user.last_name }}
+        Email: {{ user.email }}
+        Created at: {{ user.created_at }}
+    </div>
+    <footer>
+        <a href="/users/{{ user.user_id }}/edit">Edit</a> | <a href="/users/{{ user.user_id }}/destroy">Delete</a></td>
+    </footer>
+</body>
+</html>

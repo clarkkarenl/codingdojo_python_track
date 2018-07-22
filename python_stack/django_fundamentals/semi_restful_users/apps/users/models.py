@@ -35,27 +35,27 @@ class UserManager(models.Manager):
 
     def user_update_validator(self, postData):
         errors = []
-        user_id = postData['id']
-        print "validator id is ", user_id
-        first_name = postData['first_name']
-        print "validator fn is ", first_name
-        last_name = postData['last_name']
-        print "validator ln is ", last_name
-        email = postData['email']
-        print "validator email is ", email
+        uid = postData['id']
+        fname = postData['first_name']
+        lname = postData['last_name']
+        eml = postData['email']
 
-        if len(first_name) < 1 or len(first_name) > 254:
+        if len(fname) < 1 or len(fname) > 254:
             errors.append('First Name must be between one and 255 characters')
-        if len(last_name) < 1 or len(last_name) > 254:
+        if len(lname) < 1 or len(lname) > 254:
             errors.append('Last Name must be between one and 255 characters')
-        if len(email) < 1 or not EMAIL_REGEX.match(email):
+        if len(eml) < 1 or not EMAIL_REGEX.match(eml):
             errors.append('Please enter a valid email address')
         
         if len(errors) > 0:
             return (False, errors)
 
-        user = self.update(first_name=first_name,last_name=last_name, email=email)
-        return (True, user) 
+        try:
+            user = User.objects.get(id).update(first_name=fname,last_name=lname, email=eml)
+            return (True, user) 
+        except:
+            errors.append("You shouldn't be here")
+            return (False, errors)
 
 
 # User class definition

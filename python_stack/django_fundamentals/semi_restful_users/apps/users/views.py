@@ -10,7 +10,7 @@ from .models import User
 # to display all the users. This will need a template.
 def index(request):
     context = {
-        'users' : User.objects.all()
+        'users': User.objects.all()
     }
     return render(request, 'users/index.html', context)
 
@@ -67,16 +67,10 @@ def destroy(request):
 # the submitted form sent from /users/<id>/edit. Have this 
 # redirect to /users/<id> once updated.
 def update(request, id):
-    # u = User.objects.get(id = id)
     valid, result = User.objects.user_update_validator(request.POST)
     if not valid:
         for error in result:
             messages.error(request, error)
         return redirect('/users/' + id + '/edit/')
     else:
-        u = User.objects.get(id = id)
-        u.first_name = request.POST['first_name']
-        u.last_name = request.POST['last_name']
-        u.email = request.POST['email']
-        u.save()
         return redirect('/users/' + id)

@@ -32,11 +32,17 @@ class UserManager(models.Manager):
             user = self.create(first_name=first_name, last_name=last_name, email=email)
             return (True, user)
 
+
     def user_update_validator(self, postData):
         errors = []
+        user_id = postData['id']
+        print "validator id is ", user_id
         first_name = postData['first_name']
+        print "validator fn is ", first_name
         last_name = postData['last_name']
+        print "validator ln is ", last_name
         email = postData['email']
+        print "validator email is ", email
 
         if len(first_name) < 1 or len(first_name) > 254:
             errors.append('First Name must be between one and 255 characters')
@@ -48,8 +54,9 @@ class UserManager(models.Manager):
         if len(errors) > 0:
             return (False, errors)
 
-        user = self.update(first_name=first_name, last_name=last_name, email=email)
+        user = self.update(first_name=first_name,last_name=last_name, email=email)
         return (True, user) 
+
 
 # User class definition
 class User(models.Model):

@@ -1,5 +1,69 @@
 * {
+    margin: 0px;
+}
+body {
+    width: 650px;
     font-family: Arial, Helvetica, sans-serif;
-    color: blue;
-    font-size: 10pt;
+    font-size: 9pt;
+}
+h3 {
+    margin: 15px 0px 0px 20px;
+}
+p {
+    margin: 1px 0px 0px 20px;
+}
+.new_user {
+    margin: 10px 0px 0px 20px;
+}
+table {
+    margin: 5px 20px;
+    border-collapse: collapse;
+
+}
+table, th, td {
+    border: 1px solid black;
+}
+th, td {
+    padding: 5px;
+    text-align: left;
+    border-bottom: none;
+    border-top: none;
+}
+th {
+    background-color: lightgrey;
+}
+td {
+    font-weight: normal;
+}
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+tr:hover {
+    background-color: #ddd;
+}
+.flash { /* All flash messages base styling */
+    margin: 10px 0px 0px 10px;
+    height: 40%;
+    text-align: center;
+    width: 430px;
+    background-color: darkred;
+    color: white;
+}
+form { /* All forms base styling */
+    display: inline-block;
+    width: 170px;
+    margin-top: 5px;
+    padding: 7px;
+    font-size: 8pt;
+}
+.user_actions {
+    margin-top: 10px;
+    padding: 0px 0px 10px 0px;
+}
+.btn { 
+    display: inline-block;
+    color: white;
+    background-color: teal;
+    margin-top: 10px;
+    font-size: 8pt;
 }

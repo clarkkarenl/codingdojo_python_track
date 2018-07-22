@@ -8,7 +8,7 @@ EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$')
 
 # UserManager handles validation of POST data
 class UserManager(models.Manager):
-    def basic_validator(self, postData):
+    def user_create_validator(self, postData):
         errors = []
         first_name = postData['first_name']
         last_name = postData['last_name']
@@ -32,6 +32,24 @@ class UserManager(models.Manager):
             user = self.create(first_name=first_name, last_name=last_name, email=email)
             return (True, user)
 
+    def user_update_validator(self, postData):
+        errors = []
+        first_name = postData['first_name']
+        last_name = postData['last_name']
+        email = postData['email']
+
+        if len(first_name) < 1 or len(first_name) > 254:
+            errors.append('First Name must be between one and 255 characters')
+        if len(last_name) < 1 or len(last_name) > 254:
+            errors.append('Last Name must be between one and 255 characters')
+        if len(email) < 1 or not EMAIL_REGEX.match(email):
+            errors.append('Please enter a valid email address')
+        
+        if len(errors) > 0:
+            return (False, errors)
+
+        user = self.update(first_name=first_name, last_name=last_name, email=email)
+        return (True, user) 
 
 # User class definition
 class User(models.Model):

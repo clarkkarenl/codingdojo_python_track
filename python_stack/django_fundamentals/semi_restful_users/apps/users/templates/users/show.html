@@ -19,13 +19,13 @@
         {% endif %}
     </div>
     <div class="show_user">
-        {{ user.user_id }}
+        {{ user.id }}
         Full Name: {{ user.first_name }} {{ user.last_name }}
         Email: {{ user.email }}
         Created at: {{ user.created_at }}
     </div>
     <footer>
-        <a href="/users/{{ user.user_id }}/edit">Edit</a> | <a href="/users/{{ user.user_id }}/destroy">Delete</a></td>
+        <a href="/users/{{ user.id }}/edit">Edit</a> | <a href="/users/{{ user.id }}/destroy">Delete</a></td>
     </footer>
 </body>
 </html>

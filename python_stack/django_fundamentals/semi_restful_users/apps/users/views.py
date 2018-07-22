@@ -27,7 +27,7 @@ def new(request):
 # should be sent from the form on the page /users/new. 
 # Have this redirect to /users/<id> once created.
 def create(request):
-    valid, result = User.objects.basic_validator(request.POST)
+    valid, result = User.objects.user_create_validator(request.POST)
     if not valid:
         for error in result:
             messages.error(request, error)
@@ -41,9 +41,9 @@ def create(request):
 # user with the given id. This will need a template
 def edit(request, id):
     context = {
-        'user' : User.objects.get(id=id)
+        'user': User.objects.get(id=id)
     }
-    return render(request, 'users/' + str(id) + '/edit', context)
+    return render(request, 'users/edit.html', context)
 
 
 # GET /users/<id> - calls the show method to display 
@@ -51,7 +51,7 @@ def edit(request, id):
 # will need a template.
 def show(request, id):
     context = {
-        'user' : User.objects.get(id=id)
+        'user': User.objects.get(id=id)
     }
     return render(request, 'users/show.html', context)
 
@@ -62,19 +62,21 @@ def show(request, id):
 def destroy(request):
     return render(request, 'users/index.html')
 
+
 # POST /users/update - calls the update method to process 
 # the submitted form sent from /users/<id>/edit. Have this 
 # redirect to /users/<id> once updated.
-def update(request):
-    errors = User.objects.basic_validator(request.POST)
-    if len(errors):
-        for tag, error in errors.iteritems():
-            messages.error(request, error, extra_tags=tag)
-        return redirect('/user/' + id + 'edit/')
+def update(request, id):
+    # u = User.objects.get(id = id)
+    valid, result = User.objects.user_update_validator(request.POST)
+    if not valid:
+        for error in result:
+            messages.error(request, error)
+        return redirect('/users/' + id + '/edit/')
     else:
         u = User.objects.get(id = id)
         u.first_name = request.POST['first_name']
         u.last_name = request.POST['last_name']
         u.email = request.POST['email']
         u.save()
-        return redirect('/user/' + str(id))
+        return redirect('/users/' + id)

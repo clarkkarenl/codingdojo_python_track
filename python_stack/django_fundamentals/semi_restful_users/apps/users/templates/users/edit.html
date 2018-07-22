@@ -19,17 +19,17 @@
         {% endif %}
     </div>
     <div class="edit_user">
-        <form action="/users/<id>/edit" method="post">
+        <form action="/users/{{ user.id }}/update/" method="post">
             {% csrf_token %}
             First name:<input type="text" name="first_name" value="{{ user.first_name }}">
             Last name:<input type="text" name="last_name" value="{{ user.last_name }}"  >
             Email address:<input type="text" name="email" value="{{ user.email }}">
-            <input type="hidden" name="user_id" value="{{ user.user_id }}">
+            <input type="hidden" name="id" value="{{ user.id }}">
             <input type="submit" class="btn" name="submit" value="Update">
         </form>
     </div>
     <div class="user_actions">
-            <p><a href="/users/{{ user.user_id }}">Show</a> | <a href="/users">Go back</a></p>
+            <p><a href="/users/{{ user.id }}">Show</a> | <a href="/users">Go back</a></p>
         </div>
 </body>
 </html>

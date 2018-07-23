@@ -35,26 +35,34 @@ class UserManager(models.Manager):
 
     def user_update_validator(self, postData):
         errors = []
-        uid = postData['id']
-        fname = postData['first_name']
-        lname = postData['last_name']
-        eml = postData['email']
+        usr = User.objects.get(id=postData['id'])
+        usr_id = usr.id
+        usr.new_first_name = postData['first_name']
+        usr.new_last_name = postData['last_name']
+        usr.new_email = postData['email']
 
-        if len(fname) < 1 or len(fname) > 254:
+        if len(usr.new_first_name) < 1 or len(usr.new_first_name) > 254:
             errors.append('First Name must be between one and 255 characters')
-        if len(lname) < 1 or len(lname) > 254:
+        if len(usr.new_last_name) < 1 or len(usr.new_last_name) > 254:
             errors.append('Last Name must be between one and 255 characters')
-        if len(eml) < 1 or not EMAIL_REGEX.match(eml):
+        if len(usr.new_email) < 1 or not EMAIL_REGEX.match(usr.new_email):
             errors.append('Please enter a valid email address')
+
+        # For updates, we have to allow the same email to be posted as
+        # the user might not want to change their email BUT we can't
+        # allow a user to change their email to that of another user!
+        if usr.email != usr.new_email:
+            if User.objects.filter(email=usr.new_email).count() > 0:
+                errors.append('That is not a valid email')
         
         if len(errors) > 0:
             return (False, errors)
 
         try:
-            user = User.objects.get(id).update(first_name=fname,last_name=lname, email=eml)
+            user = self.filter(id=usr_id).update(first_name=usr.new_first_name,last_name=usr.new_last_name, email=usr.new_email)
             return (True, user) 
         except:
-            errors.append("You shouldn't be here")
+            errors.append("The update operation failed for unknown reasons")
             return (False, errors)
 
 

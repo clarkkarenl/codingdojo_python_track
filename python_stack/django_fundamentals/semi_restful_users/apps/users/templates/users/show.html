@@ -24,8 +24,8 @@
         Email: {{ user.email }}
         Created at: {{ user.created_at }}
     </div>
-    <footer>
-        <a href="/users/{{ user.id }}/edit">Edit</a> | <a href="/users/{{ user.id }}/destroy">Delete</a></td>
-    </footer>
+    <div class="user_actions">
+        <a href="/users/">Return Home</a> | <a href="/users/{{ user.id }}/edit/">Edit</a> | <a href="/users/{{ user.id }}/destroy/">Delete</a></td>
+    </div>
 </body>
 </html>

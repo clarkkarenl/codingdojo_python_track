@@ -19,10 +19,9 @@
         {% endif %}
     </div>
     <div class="show_user">
-        {{ user.id }}
-        Full Name: {{ user.first_name }} {{ user.last_name }}
-        Email: {{ user.email }}
-        Created at: {{ user.created_at }}
+        <p>Full Name: {{ user.first_name }} {{ user.last_name }}</p>
+        <p>Email: {{ user.email }}</p>
+        <p>Created at: {{ user.created_at }}</p>
     </div>
     <div class="user_actions">
         <a href="/users/">Return Home</a> | <a href="/users/{{ user.id }}/edit/">Edit</a> | <a href="/users/{{ user.id }}/destroy/">Delete</a></td>

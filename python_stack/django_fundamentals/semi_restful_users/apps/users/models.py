@@ -78,3 +78,4 @@ class User(models.Model):
     # model overwriting the old hidden objects key
     # with a new one with extra properties
     objects = UserManager()
+

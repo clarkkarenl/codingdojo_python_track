@@ -59,8 +59,12 @@ def show(request, id):
 # GET /users/<id>/destroy - calls the destroy method 
 # to remove a particular user with the given id. Have 
 # this redirect back to /users once deleted.
-def destroy(request):
-    return render(request, 'users/index.html')
+# TODO - this sucks but I can't quite get it right in models.py
+# Fix this someday
+def destroy(request, id):
+    user_id = id
+    User.objects.filter(id=user_id).delete()
+    return redirect('/users/')
 
 
 # POST /users/update - calls the update method to process 

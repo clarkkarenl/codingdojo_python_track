@@ -4,16 +4,13 @@
 body {
     width: 650px;
     font-family: Arial, Helvetica, sans-serif;
-    font-size: 10pt;
+    font-size: 8pt;
 }
 h3 {
     margin: 15px 0px 0px 20px;
 }
 p {
     margin: 1px 0px 0px 20px;
-}
-.add_course {
-    margin: 5px 20px;
 }
 table {
     margin: 5px 20px;
@@ -49,32 +46,16 @@ tr:hover {
     background-color: darkred;
     color: white;
 }
-.course_data {
+.add_course {
     display: inline-block;
-    width: 300px;
-    height: 30%;
-}
-form { /* All forms base styling */
-    display: inline-block;
+    margin: 5px 20px;
     width: 170px;
-    margin-top: 5px;
     padding: 7px;
     font-size: 8pt;
 }
 button {
-    display: inline-block;
     margin-top: 10px;
     font-size: 8pt;
-}
-.yes_btn { 
-    width: 200px;
-    color: white;
-    background-color: darkred;
-}
-.no_btn {
-    width: 30px;
-    color: black;
-    background-color: white;
 }
 .add_btn {
     margin-left: 200px;
@@ -83,3 +64,36 @@ button {
     color: white;
     background-color: green;
 }
+.delete_container {
+    width: 300px;
+}
+.course_data {
+    display: inline-block;
+    margin-top: 20px;
+    margin-left: 20px;
+    width: 280px;
+}
+ul {
+    list-style: none;
+}
+.button_container {
+    display: inline-block;
+}
+.button_container > form {
+    width: 10px;
+}
+.no_btn {
+    margin-top: 5px;
+    width: 30px;
+    margin-left: 20px;
+    color: black;
+    background-color: lightgrey;
+}
+.yes_btn { 
+    margin-top: 5px;
+    margin-left: 60px;
+    width: 160px;
+    color: white;
+    background-color: darkred;
+}
+

@@ -4,10 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'loginreg/css/style.css' %}" />
     <title>Login & Reg | Success</title>
 </head>
 <body>
+    <div class="messages">
+        {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+        </div> 
     <h3>Success! Welcome {{ user.first_name }} !</h3>
-    <p>Successfully {{ user.state }}</p>
+    {% if request.session.new_user == True %}
+        <p>Successfully registered!</p>
+    {% elif request.session.new_user == False %}
+        <p>Successfully logged in!</p>
+    {% endif %}
 </body>
 </html>

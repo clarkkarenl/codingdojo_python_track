@@ -1,63 +1,74 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
+
 import re
+from datetime import datetime
+
+import bcrypt
+from django.contrib.auth import authenticate, login
 from django.db import models
 
 EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$')
-LETTERS_REGEX = re.compile(r'^[a-zA-Z]$')
+LETTERS_REGEX = re.compile(r'^[a-zA-Z]+$')
 
 class UserManager(models.Manager):
-    def reg_validator(self, postData):
+    def register_validator(self, postData):
         errors = []
-        new_user = user.id
-        new_user.first_name = postData['first_name']
-        new_user.last_name = postData['last_name']
-        new_user.birthdate = postData['birthdate']
-        new_user.email = postData['email'] 
-        new_user.password = postData['password'] 
-        new_user.confirm_pw = postData['confirm_pw']
+        first_name = postData['first_name']
+        last_name = postData['last_name']
+        birthdate = postData['birthdate']
+        email = postData['email'] 
+        password = postData['password'] 
+        confirm_pw = postData['confirm_pw']
 
         # First Name - Required; No fewer than 2 characters; letters only
-        if len(new_user.first_name) < 2 or len(new_user.first_name) > 254 or not LETTERS_REGEX.match(new_user.first_name):
+        if len(first_name) < 2 or len(first_name) > 254 or not LETTERS_REGEX.match(first_name):
             errors.append('First Name must be between two and 254 letters. No other characters allowed.')
         # Last Name - Required; No fewer than 2 characters; letters only
-        if len(new_user.last_name) < 2 or len(new_user.last_name) > 254 or not LETTERS_REGEX.match(new_user.last_name):
+        if len(last_name) < 2 or len(last_name) > 254 or not LETTERS_REGEX.match(last_name):
             errors.append('Last Name must be between two and 254 letters. No other characters allowed.')
         # Bonus: Birthday field - before today
-        if new_user.birthdate > now():
+        if datetime.strptime(birthdate, "%Y-%m-%d").strftime("%Y-%m-%d") >= datetime.strftime(datetime.now(), "%Y-%m-%d"):
             errors.append('Birthdate must be in the past')
         # Email - Required; Valid Format
-        if len(new_user.email) < 5 or not EMAIL_REGEX.match(email):
+        if len(email) < 5 or not EMAIL_REGEX.match(email):
             errors.append('Please enter a valid email address')
 
-        # TODO: password
-        # Password - Required; 
-        # No fewer than 8 characters in length; 
-        # matches Password Confirmation
+        if len(password) < 8:
+            errors.append('Please enter a valid password')
+        if password != confirm_pw:
+            errors.append('Password does not match confirmation password')
 
         if len(errors) > 0:
             return (False, errors)
 
         try:
-            self.get(email=new_user.email)
+            self.get(email=email)
             errors.append('That is not a valid email')
             return (False, errors)
         except:
-            # TODO: encrypt the pw in here somewhere
-            # TODO: send the pw to the DB, too!
-            user = self.create(first_name=new_user.first_name, last_name=new_user.last_name, birthdate=new_user.birthdate, email=new_user.email)
+            hashed_pw = bcrypt.hashpw(password.encode('utf8'), bcrypt.gensalt())
+            user = self.create(first_name=first_name, last_name=last_name, birthdate=birthdate, email=email,password=hashed_pw)
             return (True, user)
 
 
     def login_validator(self, postData):
         errors = []
-        user = user.id
-        user.email = postData['email'] 
-        user.password = postData['password']
+        email = postData['email']
+        password = postData['password']
+        
+        if not User.objects.get(email=email) or len(email) < 5:
+            errors.append('Invalid email. Please try again.')
+            return (False, errors)
 
-        # TODO: email match
-        # TODO: password match using bcrypt unhash magic
-        pass
+        user = User.objects.get(email=email)
+
+        if bcrypt.checkpw(password.encode('utf8'), user.password.encode('utf8')):
+            user = User.objects.get(email=email)
+            return (True, user)
+        else:
+            errors.append('An error occurred. Please try again.')
+            return (False, errors)
 
 
 class User(models.Model):

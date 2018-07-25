@@ -4,9 +4,41 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'loginreg/css/style.css' %}" />
     <title>Login & Reg | Home</title>
 </head>
 <body>
-    <p>Kewl Content Hear!</p>
+    <div class="messages">
+        {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    </div>
+    <h3>Registration</h3>
+    <form action="/register/" method="post">
+        {% csrf_token %}
+        <ul>
+            <li>First Name: <input type="text" name="first_name"></li>
+            <li>Last Name: <input type="text" name="last_name"></li>
+            <li>Birthdate: <input type="date" name="birthdate" value="2021-01-01"></li>
+            <li>Email: <input type="text" name="email"></li>
+            <li>Password: <input type="password" name="password"></li>
+            <li>Confirm Password: <input type="password" name="confirm_pw"></li>
+        </ul>
+        <button type="submit" class="add_btn" name="register">Register</button>
+    </form>
+    <h3>Login</h3>
+    <form action="/login/" method=post>
+        {% csrf_token %}
+        <ul>
+            <li>Email: <input type="text" name="email"></li>
+            <li>Password: <input type="password" name="password"></li>
+        </ul>
+        <button type="submit" class="add_btn" name="login">Login</button>
+    </form>
 </body>
 </html>

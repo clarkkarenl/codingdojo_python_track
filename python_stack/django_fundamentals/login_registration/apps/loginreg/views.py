@@ -12,8 +12,6 @@ def index(request):
         request.session['new_user'] = ''
     if 'user_id' not in request.session:
         request.session['user_id'] = ''
-
-    print "user_id:", request.session['user_id'], "new_user:", request.session['new_user']
     return render(request, 'loginreg/index.html')
 
 
@@ -24,9 +22,8 @@ def register(request):
             messages.error(request, error)
         return redirect('/')
 
-    request.session['user_id'] = result
+    request.session['user_id'] = result.id
     request.session['new_user'] = True
-    # print "user_id:", request.session['user_id'], "new_user:", request.session['new_user']
     return redirect('/success')
 
 

@@ -72,16 +72,16 @@ class User(models.Model):
     alias = models.CharField(max_length=255)
     email = models.CharField(max_length=255)
     password = models.CharField(max_length=64)
-    created = models.DateTimeField(auto_now_add = True)
-    updated = models.DateTimeField(auto_now = True)
+    created_at = models.DateTimeField(auto_now_add = True)
+    updated_at = models.DateTimeField(auto_now = True)
 
     objects = UserManager()
 
 
 class Book(models.Model):
     title = models.CharField(max_length=255)
-    author = models.CharField(max_length(255)
-    created = models.DateTimeField(auto_now_add = True)
+    author = models.CharField(max_length=255)
+    created_at = models.DateTimeField(auto_now_add = True)
 
 
 class Review(models.Model):
@@ -89,4 +89,4 @@ class Review(models.Model):
     rating = models.IntegerField   
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     book = models.ForeignKey(Book, on_delete=models.CASCADE)
-    created = models.DateTimeField(auto_now_add = True)
+    created_at = models.DateTimeField(auto_now_add = True)

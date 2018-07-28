@@ -53,18 +53,17 @@ class UserManager(models.Manager):
         errors = []
         email = postData['email']
         password = postData['password']
-        
-        if not User.objects.get(email=email) or len(email) < 5:
-            errors.append('Invalid email. Please try again.')
-            return (False, errors)
 
-        user = User.objects.get(email=email)
-
-        if bcrypt.checkpw(password.encode(), user.password.encode()):
-            user = User.objects.get(email=email)
-            return (True, user)
-        else:
-            errors.append('An error occurred. Please try again.')
+        try:
+            self.get(email=email)
+            if bcrypt.checkpw(password.encode(), user.password.encode()):
+                user = self.get(email=email)
+                return (True, user)
+            else:
+                errors.append('An error occurred. Please try again.')
+                return (False, errors)
+        except:
+            errors.append('Incorrect email or password. Please try again.')
             return (False, errors)
 
 

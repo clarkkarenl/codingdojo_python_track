@@ -8,7 +8,7 @@ from .models import User, Book, Review
 
 # a GET request to /
 def index(request):
-    return render(request, 'index.html', context)
+    return render(request, 'book_reviews/index.html')
 
 
 # register for the site
@@ -42,12 +42,12 @@ def home(request):
     context = {
         'user' : request.session['user_id']
     }
-    return render(request, 'books/books.html', context)
+    return render(request, 'book_reviews/books.html', context)
 
 
 # GET request to /books/add 
 def new(request):
-    return render(request, 'books/add.html')
+    return render(request, 'book_reviews/add.html')
 
 
 # POST to /books/create - calls the create method to 
@@ -68,7 +68,7 @@ def show(request, id):
     # context = {
     #     'user': User.objects.get(id=id)
     # }
-    return render(request, 'books/detail.html', context)
+    return render(request, 'book_reviews/detail.html', context)
 
 
 # GET /books/destroy/<id>/ - calls the destroy method 

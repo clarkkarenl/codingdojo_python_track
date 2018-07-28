@@ -8,7 +8,7 @@ from django.contrib.auth import authenticate, login
 from django.db import models
 
 EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$')
-LETTERS_REGEX = re.compile(r'^[a-zA-Z]+$')
+LETTERS_REGEX = re.compile(r'^[a-zA-Z ]+$')
 
 
 class UserManager(models.Manager):
@@ -20,12 +20,13 @@ class UserManager(models.Manager):
         password = postData['password'] 
         confirm_pw = postData['confirm_pw']
 
-        # First Name - Required; No fewer than 2 characters; letters only
         if len(name) < 2 or len(name) > 254 or not LETTERS_REGEX.match(name):
-            errors.append('First Name must be between two and 254 letters. No other characters allowed.')
+            errors.append('Name must be between two and 254 letters.')
+        if name[0] == " " or name[len(name) - 1] == " ":
+            errors.append('Name cannot start or end with a space')
         # Last Name - Required; No fewer than 2 characters; letters only
         if len(alias) < 2 or len(alias) > 254 or not LETTERS_REGEX.match(alias):
-            errors.append('Last Name must be between two and 254 letters. No other characters allowed.')
+            errors.append('Alias must be between two and 254 letters.')
         # Email - Required; Valid Format
         if len(email) < 5 or not EMAIL_REGEX.match(email):
             errors.append('Please enter a valid email address')
@@ -43,7 +44,7 @@ class UserManager(models.Manager):
             errors.append('That is not a valid email')
             return (False, errors)
         except:
-            hashed_pw = bcrypt.hashpw(password.encode('utf8'), bcrypt.gensalt())
+            hashed_pw = bcrypt.hashpw(password.encode(), bcrypt.gensalt())
             user = self.create(name=name, alias=alias, email=email,password=hashed_pw)
             return (True, user)
 
@@ -59,7 +60,7 @@ class UserManager(models.Manager):
 
         user = User.objects.get(email=email)
 
-        if bcrypt.checkpw(password.encode('utf8'), user.password.encode('utf8')):
+        if bcrypt.checkpw(password.encode(), user.password.encode()):
             user = User.objects.get(email=email)
             return (True, user)
         else:

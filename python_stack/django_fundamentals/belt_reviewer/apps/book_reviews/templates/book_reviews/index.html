@@ -6,9 +6,43 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     {% load static %}
     <link rel="stylesheet" type="text/css" href="{% static 'book_reviews/css/style.css' %}" />
-    <title>Welcome!</title>
+    <title>Welcome</title>
 </head>
 <body>
-    
+    <div class="messages">
+        {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    </div>
+    <div class="reg">
+        <h3>Registration</h3>
+        <form action="/register/" method="post">
+            {% csrf_token %}
+            <ul>
+                <li>Name: <input type="text" required name="name"></li>
+                <li>Alias: <input type="text" required name="alias"></li>
+                <li>Email: <input type="text" required name="email"></li>
+                <li>Password: <input type="password" required name="password"></li>
+                <p>*Password should be at least 8 characters</p>
+                <li>Confirm Pw: <input type="password" required name="confirm_pw"></li>
+            </ul>
+            <button type="submit" class="btn" name="register">Register</button>
+        </form>
+    </div> <!-- End reg -->
+    <div class="login">
+        <h3>Login</h3>
+        <form action="/login/" method=post>
+            {% csrf_token %}
+            <ul>
+                <li>Email: <input type="text"  required name="email"></li>
+                <li>Password: <input type="password"  required name="password"></li>
+            </ul>
+            <button type="submit" class="btn" name="login">Login</button>
+        </form>
+    </div> <!-- End login-->
 </body>
 </html>

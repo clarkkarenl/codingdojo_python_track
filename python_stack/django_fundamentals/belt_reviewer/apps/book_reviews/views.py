@@ -91,15 +91,15 @@ def create(request):
 # POST to /books/create_review - calls the create method
 # to insert a review into our database. 
 def create_review(request):
-    user_id = request.session['user_id']
-    valid, result = Review.objects.review_create_validator(request.POST, user_id)
+    # user_id = request.session['user_id']
+    valid, result = Review.objects.review_create_validator(request.POST)
 
     if not valid:
         for error in result:
             messages.error(request, error)
         return redirect('/books/')
 
-    return redirect('/books/' + str(result.id)+ '/')
+    return redirect('/books/' + result + '/')
 
 # GET /books/<id> - calls the show method to display 
 # the info for a particular book with given id.

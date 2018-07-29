@@ -67,18 +67,24 @@ def home(request):
 
 # GET request to /books/add 
 def new(request):
-    return render(request, 'book_reviews/add.html')
+    context = {
+        'user' : User.objects.get(id=request.session['user_id']),
+        'author_set' : Book.objects.values_list('author', flat=True).distinct().order_by('author')
+    }
+    return render(request, 'book_reviews/add.html', context)
 
 
 # POST to /books/create - calls the create method to 
 # insert a new book and review into our database. 
 def create(request):
-    # valid, result = User.objects.user_create_validator(request.POST)
-    # if not valid:
-    #     for error in result:
-    #         messages.error(request, error)
-    #     return redirect('/users/new')
-    # request.session['user_id'] = result.id
+    user_id = request.session['user_id']
+    valid, result = Book.objects.book_create_validator(request.POST, user_id)
+
+    if not valid:
+        for error in result:
+            messages.error(request, error)
+        return redirect('/books/add/')
+
     return redirect('/books/' + str(result.id)+ '/')
 
 
@@ -102,10 +108,11 @@ def destroy(request, id):
 
 ####### USER STUFF #######
 def user_page(request, id):
+    user_id = id
     context = {
-        'user' : User.objects.get(id=request.session['user_id']),
-        'my_reviews': Review.objects.filter(user=request.session['user_id']),
-        'num_reviews': Review.objects.filter(user=request.session['user_id']).count()
+        'user' : User.objects.get(id=user_id),
+        'my_reviews': Review.objects.filter(user=user_id),
+        'num_reviews': Review.objects.filter(user=user_id).count()
     }
     return render(request, 'book_reviews/users.html', context)
 ##########################################

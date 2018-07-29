@@ -9,6 +9,45 @@
     <title>Add Book and Review</title>
 </head>
 <body>
-    <p>This is where you will add a book!</p>
+    <div class="messages">
+        {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    </div>
+    <div class="add_main">
+        <h3>Add a New Book Title and a Review</h3>
+        <form action="/books/create/" method="post" id="bookform">
+            {% csrf_token %}
+            <ul>
+                <li>Book Title: <input type="text" required name="title"></li>
+                <li>Author:</li>
+                    <ul>
+                        <li>Choose from the list:
+                            {% if author_set %}
+                                <select name="author_1">
+                                {% for author in author_set %}
+                                    <option value="{{ author }}">{{ author }}</option>
+                                {% endfor %}
+                                </select></li>
+                            {% endif %}
+                        <li>Or add a new author: <input type="text" name="author_2"></li>
+                    </ul>
+                <li>Review: <input type="text" required name="review_text"></li>
+                <li>Rating <select name="stars" required>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3" selected>3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                      </select></li>
+            </ul>
+            <input type="hidden" name="user_id" value="{{ user }}">
+            <button type="submit" class="btn" name="submit">Submit</button>
+        </form>
+    </div>
 </body>
 </html>

@@ -5,7 +5,14 @@ body {
 }
 ul {
     list-style: none;
-    padding-left: 3px;
+    padding-left: 2px;
+    padding-bottom: 3px;
+}
+li {
+    margin-bottom: 2px;
+}
+.italic {
+    font-style: italic;
 }
 .messages {
     margin: 20px 0px 5px 10px;
@@ -39,8 +46,15 @@ ul {
 .about_me, .my_reviews {
     margin: 10px 0px 3px 10px;
 }
+.about_me, .my_reviews {
+    width: 300px;
+    vertical-align: top;
+}
 .about_me li {
     padding: 1px;
+}
+.my_reviews li {
+    margin-left: 20px;
 }
 .welcome {
     width: 530px;
@@ -54,7 +68,15 @@ ul {
     vertical-align: top;
     font-size: 8pt;
     margin-top: 20px;
-    margin-left: 30px;
+    margin-left: 120px;
+}
+.book_container {
+    height: 100px;
+    overflow: scroll;
+}
+.recent_reviews {
+    width: 290px;
+    overflow: auto;
 }
 .recent_reviews, .books_w_reviews {
     display: inline-block;

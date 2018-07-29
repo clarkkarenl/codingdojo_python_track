@@ -6,6 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     {% load static %}
     <link rel="stylesheet" type="text/css" href="{% static 'book_reviews/css/style.css' %}" />
+    <!-- Add icon library -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>Book and Reviews</title>
 </head>
 <body>
@@ -21,27 +23,23 @@
         <table>
             <h3>Recent Book Reviews</h3>
             {% for r in reviews %}
-                <ul>{{ r.book }}
-                    <!-- {% static "" as baseUrl %}
-                    <img src="{{ baseUrl }}book_reviews/images/{{ r.stars }}stars.png"></img>
-                    <!-- {% with 'book_reviews/images/'|add:r.stars|add:'stars.png' as image_static %}
-                        <li>{% static image_static %}</li>
-                    {% endwith %} --> -->
-                    <li>{{ r.user }} says: <span class="italic">{{ r.review_text }}</span></li>
-                    <li>{{ r.created_at }} </li>
+                <ul><a href="../../books/{{ r.book.id }}/">{{ r.book }}</a>
+                    <li>Rating: {{ r.stars }} stars</li>
+                    <li><a href="../../users/{{ r.user.id }}/">{{ r.user }}</a> says: <span class="italic">{{ r.review_text }}</span></li>
+                    <li><span class="italic">{{ r.created_at }}</span></li>
                 </ul>
             {% endfor %}
         </table>
     </div> <!-- End recent_reviews -->
     <div class="books_w_reviews">
         <h3>Other Books with Reviews</h3>
-        <table>
+        <div class="book_container">
+            <ul>
             {% for b in books %}
-                <tr>
-                    <td>{{ b.title }}</td>
-                </tr>
+                <li><a href="../../books/{{ b.id }}/">{{ b.title }}</a></li>
             {% endfor %}
-        </table>
+            </ul>
+        </div>  <!-- End book_container -->
     </div>
 </body>
 </html>

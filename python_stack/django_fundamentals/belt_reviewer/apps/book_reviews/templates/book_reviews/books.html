@@ -9,6 +9,30 @@
     <title>Book and Reviews</title>
 </head>
 <body>
-    <p>Reading is FUNdamental!</p>
+    <div class="welcome">
+        <h3>Welcome, {{ user.name }}</h3>
+    </div> <!-- End welcome -->
+    <div class="recent_reviews">
+        <table>
+            <h3>Recent Book Reviews</h3>
+            {% for r in reviews %}
+                <ul>{{ r.book }}
+                    <li>{{ r.stars }}</li>
+                    <li>{{ r.user }} says: <span class="italic">{{ r.review_text }}</span></li>
+                    <li>{{ r.created_at }} </li>
+                </ul>
+            {% endfor %}
+        </table>
+    </div> <!-- End recent_reviews -->
+    <div class="books_w_reviews">
+        <h3>Other Books with Reviews</h3>
+        <table>
+            {% for b in books %}
+                <tr>
+                    <td>{{ b.title }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
 </body>
 </html>

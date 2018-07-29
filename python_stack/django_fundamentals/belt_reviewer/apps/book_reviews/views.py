@@ -40,7 +40,9 @@ def login(request):
 # Users home page - books.html
 def home(request):
     context = {
-        'user' : request.session['user_id']
+        'user' : User.objects.get(id=request.session['user_id']),
+        'books' : Book.objects.all(),
+        'reviews': Review.objects.all()
     }
     return render(request, 'book_reviews/books.html', context)
 
@@ -65,9 +67,9 @@ def create(request):
 # GET /books/<id> - calls the show method to display 
 # the info for a particular book with given id.
 def show(request, id):
-    # context = {
-    #     'user': User.objects.get(id=id)
-    # }
+    context = {
+        'book': Book.objects.get(id=id)
+    }
     return render(request, 'book_reviews/detail.html', context)
 
 
@@ -77,3 +79,12 @@ def destroy(request, id):
     user_id = id
     User.objects.filter(id=user_id).delete()
     return redirect('/books/')
+
+
+def user_page(request, id):
+    context = {
+        'user' : User.objects.get(id=request.session['user_id']),
+        'my_reviews': Review.objects.filter(user=request.session['user_id']),
+        'num_reviews': Review.objects.filter(user=request.session['user_id']).count()
+    }
+    return render(request, 'book_reviews/users.html', context)

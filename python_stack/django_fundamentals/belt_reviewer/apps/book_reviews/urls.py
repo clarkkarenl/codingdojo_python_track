@@ -10,4 +10,5 @@ urlpatterns = [
     url(r'^books/create/$', views.create),
     url(r'^books/(?P<id>\d+)/$', views.show),
     url(r'^books/destroy/(?P<id>\d+)/$', views.destroy),
+    url(r'^users/(?P<id>\d+)/$', views.user_page)
 ]

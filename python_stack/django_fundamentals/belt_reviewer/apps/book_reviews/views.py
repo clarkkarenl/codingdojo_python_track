@@ -54,8 +54,8 @@ def logout(request):
 def home(request):
     context = {
         'user' : User.objects.get(id=request.session['user_id']),
-        'books' : Book.objects.all(),
-        'reviews': Review.objects.all()
+        'books' : Book.objects.order_by('title').distinct(),
+        'reviews': Review.objects.order_by('-created_at')[:3]
     }
     return render(request, 'book_reviews/books.html', context)
 
@@ -108,12 +108,19 @@ def show(request, id):
     return render(request, 'book_reviews/detail.html', context)
 
 
-# GET /books/destroy/<id>/ - calls the destroy method 
-# to remove a particular book with the given id. 
+# POST /books/destroy/<id>/ - calls the destroy method 
+# to remove a particular review with the given id. 
 def destroy(request, id):
-    user_id = id
-    User.objects.filter(id=user_id).delete()
+    errors = []
+    review_user = Review.objects.get(id = id).user.id
+    session_user = User.objects.get(id=request.session['user_id']).id
+
+    if review_user == session_user:
+        Review.objects.filter(id=id).delete()
+    else: 
+        errors.append("You cannot delete other users' reviews")
     return redirect('/books/')
+
 ##########################################
 
 

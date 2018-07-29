@@ -33,7 +33,14 @@
                 <hr />
                 <li>Rating: {{ r.stars }} stars</li>
                 <li><a href="../../users/{{ r.user.id }}/">{{ r.user }}</a> says: <span class="italic">{{ r.review_text }}</span></li>
-                <li><span class="italic">{{ r.created_at }}</span></li>
+                <li><span class="italic">Posted on {{ r.created_at }}</span></li>
+                {% if r.user.id == user.id %}
+                <a href="/books/destroy/{{ r.id }}/">Delete this review</a>
+                    <!-- <form id="form-id" action="/books/destroy/{{ r.id }}/" method="post">
+                        {% csrf_token %}
+                        <a href="#" onclick="document.forms['form-id'].submit();" >Delete this Review</a>  -->
+                    <!-- </form> -->
+                {% endif %}
             {% endfor %}
         {% endif %}
         </ul>

@@ -5,12 +5,18 @@ from django.contrib import messages
 from django.shortcuts import render, redirect, HttpResponse
 from .models import User, Book, Review
 
-
+####### INDEX PAGE #######
 # a GET request to /
 def index(request):
+    if 'logged_in' not in request.session:
+        request.session['logged_in'] = ''
+    if 'user_id' not in request.session:
+        request.session['user_id'] = ''
     return render(request, 'book_reviews/index.html')
+##########################################
 
 
+####### REG / LOGIN / LOGOUT #######
 # register for the site
 def register(request):
     valid, result = User.objects.register_validator(request.POST)
@@ -26,6 +32,9 @@ def register(request):
 
 # Login to the site once registered
 def login(request):
+    print request.session['user_id']
+    print request.session['logged_in']
+
     valid, result = User.objects.login_validator(request.POST)
     if not valid:
         for error in result:
@@ -37,6 +46,15 @@ def login(request):
         return redirect('/books/')
 
 
+def logout(request):
+    print request.session['user_id']
+    print request.session['logged_in']
+    request.session.clear()
+    return redirect('/')
+##########################################
+
+
+####### BOOK STUFF #######
 # Users home page - books.html
 def home(request):
     context = {
@@ -79,8 +97,10 @@ def destroy(request, id):
     user_id = id
     User.objects.filter(id=user_id).delete()
     return redirect('/books/')
+##########################################
 
 
+####### USER STUFF #######
 def user_page(request, id):
     context = {
         'user' : User.objects.get(id=request.session['user_id']),
@@ -88,3 +108,4 @@ def user_page(request, id):
         'num_reviews': Review.objects.filter(user=request.session['user_id']).count()
     }
     return render(request, 'book_reviews/users.html', context)
+##########################################

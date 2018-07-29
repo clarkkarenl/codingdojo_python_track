@@ -36,3 +36,9 @@ ul {
     margin-left: 170px;
     margin-bottom: 5px;
 }
+.about_me, .my_reviews {
+    margin: 10px 0px 3px 10px;
+}
+.about_me li {
+    padding: 1px;
+}

@@ -54,10 +54,11 @@ class UserManager(models.Manager):
         email = postData['email']
         password = postData['password']
 
+        print email, password
+
         try:
-            self.get(email=email)
+            user = self.get(email=email)
             if bcrypt.checkpw(password.encode(), user.password.encode()):
-                user = self.get(email=email)
                 return (True, user)
             else:
                 errors.append('An error occurred. Please try again.')

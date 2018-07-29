@@ -9,15 +9,18 @@
     <title>User Reviews</title>
 </head>
 <body>
+    <div class="nav_bar">
+        <a href="../../books/">Home</a><a href="../../books/add/">Add Book and Review</a><a href="../../logout/">Logout</a>
+    </div> <!-- End nav_bar -->
     <div class="about_me">
-        <ul>User Alias: {{ user.alias }}
+        <ul><h4>User Alias: {{ user.alias }}</h4>
             <li>Name: {{ user.name }}</li>
             <li>Email: {{ user.email }}</li>
             <li>Total reviews: {{ num_reviews }} </li>
         </ul>
     </div> <!-- End about_me -->
     <div class="my_reviews">
-        <h3>Posted Reviews on the Following Books</h3>
+        <h4>Posted Reviews on the Following Books</h4>
         <ul>
         {% for r in my_reviews %}
             <li><a href="../../books/{{ r.book.id }}">{{ r.book }}</a></li>

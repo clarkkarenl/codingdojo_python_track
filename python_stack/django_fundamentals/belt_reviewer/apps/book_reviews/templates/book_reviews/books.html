@@ -10,14 +10,23 @@
 </head>
 <body>
     <div class="welcome">
-        <h3>Welcome, {{ user.name }}</h3>
+        <div class="welcome_user">
+            <h3>Welcome, {{ user.name }}</h3>
+        </div>
+        <div class="nav_bar">
+            <a href="../../books/add/">Add Book and Review</a><span>.....</span><a href="../../logout/">Logout</a>
+        </div>
     </div> <!-- End welcome -->
     <div class="recent_reviews">
         <table>
             <h3>Recent Book Reviews</h3>
             {% for r in reviews %}
                 <ul>{{ r.book }}
-                    <li>{{ r.stars }}</li>
+                    <!-- {% static "" as baseUrl %}
+                    <img src="{{ baseUrl }}book_reviews/images/{{ r.stars }}stars.png"></img>
+                    <!-- {% with 'book_reviews/images/'|add:r.stars|add:'stars.png' as image_static %}
+                        <li>{% static image_static %}</li>
+                    {% endwith %} --> -->
                     <li>{{ r.user }} says: <span class="italic">{{ r.review_text }}</span></li>
                     <li>{{ r.created_at }} </li>
                 </ul>

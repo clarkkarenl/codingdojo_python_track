@@ -32,9 +32,6 @@ def register(request):
 
 # Login to the site once registered
 def login(request):
-    print request.session['user_id']
-    print request.session['logged_in']
-
     valid, result = User.objects.login_validator(request.POST)
     if not valid:
         for error in result:
@@ -47,8 +44,6 @@ def login(request):
 
 
 def logout(request):
-    print request.session['user_id']
-    print request.session['logged_in']
     request.session.clear()
     return redirect('/')
 ##########################################
@@ -100,6 +95,7 @@ def create_review(request):
         return redirect('/books/')
 
     return redirect('/books/' + result + '/')
+
 
 # GET /books/<id> - calls the show method to display 
 # the info for a particular book with given id.

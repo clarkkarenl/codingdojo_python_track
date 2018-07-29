@@ -30,10 +30,10 @@
         <ul>
         {% if reviews %}
             {% for r in reviews %}
+                <hr />
                 <li>Rating: {{ r.stars }} stars</li>
                 <li><a href="../../users/{{ r.user.id }}/">{{ r.user }}</a> says: <span class="italic">{{ r.review_text }}</span></li>
                 <li><span class="italic">{{ r.created_at }}</span></li>
-                <hr />
             {% endfor %}
         {% endif %}
         </ul>

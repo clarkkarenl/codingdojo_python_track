@@ -10,6 +10,7 @@ urlpatterns = [
     url(r'^books/$', views.home),
     url(r'^books/add/$', views.new),
     url(r'^books/create/$', views.create),
+    url(r'^books/create_review/$', views.create_review),
     url(r'^books/(?P<id>\d+)/$', views.show),
     url(r'^books/destroy/(?P<id>\d+)/$', views.destroy),
     url(r'^users/(?P<id>\d+)/$', views.user_page)

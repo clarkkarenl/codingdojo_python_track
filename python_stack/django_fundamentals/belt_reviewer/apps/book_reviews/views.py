@@ -88,11 +88,26 @@ def create(request):
     return redirect('/books/' + str(result.id)+ '/')
 
 
+# POST to /books/create_review - calls the create method
+# to insert a review into our database. 
+def create_review(request):
+    user_id = request.session['user_id']
+    valid, result = Review.objects.review_create_validator(request.POST, user_id)
+
+    if not valid:
+        for error in result:
+            messages.error(request, error)
+        return redirect('/books/')
+
+    return redirect('/books/' + str(result.id)+ '/')
+
 # GET /books/<id> - calls the show method to display 
 # the info for a particular book with given id.
 def show(request, id):
     context = {
-        'book': Book.objects.get(id=id)
+        'book': Book.objects.get(id=id),
+        'reviews': Review.objects.filter(book=id),
+        'user' : User.objects.get(id=request.session['user_id'])
     }
     return render(request, 'book_reviews/detail.html', context)
 

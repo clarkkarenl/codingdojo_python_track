@@ -99,6 +99,26 @@ class BookManager(models.Manager):
 
             return (True, new_book)
 
+class ReviewManager(models.Manager):
+    def review_create_validator(self, postData, user_id):
+        errors = []
+        book_id = postData['book_id']
+        new_review_text = postData['review_text']
+        new_stars = postData['stars']
+
+        # # TODO: Fix this!
+        # book = Book.objects.get(id = book_id)
+
+        if len(new_review_text) < 2:
+            errors.append('Review must be more than one character.')
+
+        if len(errors) > 0:
+            return (False, errors)
+        else:
+            Review.objects.create(review_text = new_review_text, stars = new_stars, user = User.objects.get(id = user_id), book = book)
+
+            return (True, book_id)
+
 
 class User(models.Model):
     name = models.CharField(max_length=255)
@@ -131,7 +151,7 @@ class Review(models.Model):
     book = models.ForeignKey(Book, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add = True)
 
-    objects = models.Manager()
+    objects = ReviewManager()
 
     def __str__(self):
         return self.review_text

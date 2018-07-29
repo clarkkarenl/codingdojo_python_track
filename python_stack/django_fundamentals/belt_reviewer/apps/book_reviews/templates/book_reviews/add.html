@@ -17,7 +17,7 @@
                 {% endfor %}
             </ul>
         {% endif %}
-    </div>
+    </div>  <!-- End messages -->
     <div class="add_main">
         <h3>Add a New Book Title and a Review</h3>
         <form action="/books/create/" method="post" id="bookform">
@@ -38,16 +38,19 @@
                     </ul>
                 <li>Review: <input type="text" required name="review_text"></li>
                 <li>Rating <select name="stars" required>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3" selected>3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                      </select></li>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3" selected>3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    </select></li>
             </ul>
             <input type="hidden" name="user_id" value="{{ user }}">
             <button type="submit" class="btn" name="submit">Submit</button>
         </form>
-    </div>
+    </div> <!-- End add_main -->
+    <div class="nav_bar">
+        <a href="../../books/">Home</a><span>.....</span><a href="../../logout/">Logout</a>
+    </div> <!-- End nav_bar -->
 </body>
 </html>

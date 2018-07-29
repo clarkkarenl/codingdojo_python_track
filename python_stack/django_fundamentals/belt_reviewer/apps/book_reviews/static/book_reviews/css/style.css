@@ -70,6 +70,16 @@ li {
     margin-top: 20px;
     margin-left: 120px;
 }
+.add_main {
+    display: inline-block;
+    width: 300px;
+    vertical-align: top;
+}
+.book_main {
+    display: inline-block;
+    width: 280px;
+    vertical-align: top;
+}
 .book_container {
     height: 100px;
     overflow: scroll;
@@ -78,7 +88,7 @@ li {
     width: 290px;
     overflow: auto;
 }
-.recent_reviews, .books_w_reviews {
+.recent_reviews, .books_w_reviews, .add_review {
     display: inline-block;
     vertical-align: top;
 }

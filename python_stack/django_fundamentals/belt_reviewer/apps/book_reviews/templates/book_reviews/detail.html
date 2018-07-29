@@ -9,6 +9,53 @@
     <title>Book and Reviews</title>
 </head>
 <body>
-    <p>This is the page for "{{ book.title }}"</p>
+    <div class="messages">
+        {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    </div> <!-- End messages -->
+    <div class="book_main">
+        <h3>{{ book.title }}</h3>
+        <h4>Author: {{ book.author }}</h4>
+    </div> <!-- End book_main -->
+    <div class="nav_bar">
+            <a href="../../books/">Home</a><span>.....</span><a href="../../logout/">Logout</a>
+        </div> <!-- End nav_bar -->
+    <div class="recent_reviews">
+        <h3>Reviews</h3>
+        <ul>
+        {% if reviews %}
+            {% for r in reviews %}
+                <li>Rating: {{ r.stars }} stars</li>
+                <li><a href="../../users/{{ r.user.id }}/">{{ r.user }}</a> says: <span class="italic">{{ r.review_text }}</span></li>
+                <li><span class="italic">{{ r.created_at }}</span></li>
+                <hr />
+            {% endfor %}
+        {% endif %}
+        </ul>
+    </div> <!-- End recent_reviews --> 
+    <div class="add_review">
+        <h3>Add a Review</h3>
+        <form action="/books/create_review/" method="post" >
+            {% csrf_token %}
+            <ul>
+                <li>Review: <input type="text" required name="review_text"></li>
+                <li>Rating <select name="stars" required>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3" selected>3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select></li>
+            </ul>
+            <input type="hidden" name="user_id" value="{{ user }}">
+            <input type="hidden" name="book_id" value="{{ book }}">
+            <button type="submit" class="btn" name="submit">Submit</button>
+        </form>
+    </div> <!-- End add_review -->
 </body>
 </html>
